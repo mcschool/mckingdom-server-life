@@ -16,10 +16,6 @@ jobs:
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
             gcloud --quiet config set compute/zone asia-northeast1-b
             gcloud --quiet compute --project "mckingdom" ssh --zone "asia-northeast1-b" "smatosan@life" --command "cd mckingdom-server-life && git pull && /bin/sh deploy.sh"
-      #- run:
-      #    name: Notification Slack
-      #    command: |
-      #      curl -X POST --data-urlencode 'payload={"text": "Earthがデプロイされました"}' https://hooks.slack.com/services/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
 
 
 workflows:
