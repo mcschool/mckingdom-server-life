@@ -2,6 +2,7 @@
 target/
 spigot/
 !spigot/.gitkeep
+*.imi
 
 .DS_Store
 
