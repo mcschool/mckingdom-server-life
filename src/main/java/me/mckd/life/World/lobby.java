@@ -36,7 +36,7 @@ public class lobby implements Listener {
 
     public void changeWorld(Player player) {
         player.performCommand("mvtp world");
-        Location location = new Location(Bukkit.getWorld("world"), -106.5, 3, -1506.5);
+        Location location = new Location(Bukkit.getWorld("world"), 387, 10, 393);
         player.teleport(location);
     }
 }
