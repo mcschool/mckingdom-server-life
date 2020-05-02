@@ -8,9 +8,6 @@ public final class Life extends JavaPlugin {
     @Override
     public void onEnable() {
         new lobby(this);
-        // Plugin startup logic
-        // Plugin startup logic..s
-
     }
 
     @Override
