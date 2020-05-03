@@ -2,7 +2,7 @@
 target/
 spigot/
 !spigot/.gitkeep
-*.imi
+*.iml
 
 .DS_Store
 

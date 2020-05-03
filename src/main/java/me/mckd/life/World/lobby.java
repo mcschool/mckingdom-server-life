@@ -5,6 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -13,19 +14,18 @@ import org.bukkit.potion.PotionEffectType;
 public class lobby implements Listener {
     public String worldName = "lobby";
 
-
     public lobby(Life plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-
+    @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent event){
         Player player = event.getPlayer();
         this.changeWorld(event.getPlayer());
-
     }
     
 
+    @EventHandler
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
