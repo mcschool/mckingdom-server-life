@@ -24,6 +24,7 @@ public class lobby implements Listener {
         this.changeWorld(event.getPlayer());
 
     }
+    
 
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
         Player player = event.getPlayer();
@@ -33,6 +34,7 @@ public class lobby implements Listener {
 
         }
     }
+
 
     public void changeWorld(Player player) {
         player.performCommand("mvtp lobby");
