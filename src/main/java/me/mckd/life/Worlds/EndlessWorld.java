@@ -7,12 +7,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 
-public class MainMaterialWorld implements Listener {
+public class EndlessWorld implements Listener {
 
     Life plugin;
-    String worldName = "material1";
+    String worldName = "endless";
 
-    public MainMaterialWorld(Life plugin) {
+    public EndlessWorld(Life plugin) {
         // コンストラクタ
         this.plugin = plugin;
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
