@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -31,10 +32,13 @@ public class LobbyWorld implements Listener {
         if (player.getWorld().getName().equals(this.worldName)) {
             this.changeWorld(player);
             player.setGameMode(GameMode.SURVIVAL);
-
         }
     }
 
+    /**
+     * ブロックを壊せないように
+     * @param e
+     */
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
         Player player = e.getPlayer();
@@ -46,6 +50,25 @@ public class LobbyWorld implements Listener {
         }
     }
 
+    /**
+     * ブロックを置けないように
+     * @param e
+     */
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent e) {
+        Player player = e.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        if (player.getGameMode() != GameMode.CREATIVE) {
+            e.setCancelled(true);
+        }
+    }
+
+    /**
+     * ワールドに移動してきたときの処理
+     * @param player
+     */
     public void changeWorld(Player player) {
         player.performCommand("mvtp lobby");
         Location location = new Location(Bukkit.getWorld("lobby"), 387, 10, 393);
