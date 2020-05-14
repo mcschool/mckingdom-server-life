@@ -1,4 +1,4 @@
-package me.mckd.life.World;
+package me.mckd.life.Worlds;
 
 import me.mckd.life.Life;
 import org.bukkit.Bukkit;
@@ -7,14 +7,14 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.potion.PotionEffectType;
 
-public class lobby implements Listener {
+public class LobbyWorld implements Listener {
     public String worldName = "lobby";
 
-    public lobby(Life plugin) {
+    public LobbyWorld(Life plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -35,11 +35,22 @@ public class lobby implements Listener {
         }
     }
 
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent e) {
+        Player player = e.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        if (player.getGameMode() != GameMode.CREATIVE) {
+            e.setCancelled(true);
+        }
+    }
 
     public void changeWorld(Player player) {
         player.performCommand("mvtp lobby");
         Location location = new Location(Bukkit.getWorld("lobby"), 387, 10, 393);
         player.teleport(location);
+        player.setGameMode(GameMode.ADVENTURE);
     }
 }
 
