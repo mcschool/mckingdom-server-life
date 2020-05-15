@@ -32,7 +32,7 @@ public class SidebarService {
         Score money = obj.getScore("Money:");
         money.setScore(currentMoney);
 
-        Score monster = obj.getScore("KilledMonster:");
+        Score monster = obj.getScore("Killed:");
         monster.setScore(currentKilledMonster);
 
         this.player.setScoreboard(board);

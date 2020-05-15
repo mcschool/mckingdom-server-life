@@ -50,6 +50,7 @@ public class LobbyWorld implements Listener {
         if (player.getWorld().getName().equals(this.worldName)) {
             this.changeWorld(player);
             player.setGameMode(GameMode.ADVENTURE);
+            player.getWorld().setPVP(false);
         }
     }
 
