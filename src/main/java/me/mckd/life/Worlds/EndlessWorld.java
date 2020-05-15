@@ -35,8 +35,11 @@ public class EndlessWorld implements Listener {
     public void onPlayerGameModeChangeEvent(PlayerGameModeChangeEvent e) {
         if (e.getPlayer().getWorld().getName().equals(this.worldName)) {
             Player player = e.getPlayer();
-            player.setGameMode(GameMode.SURVIVAL);
-            player.sendMessage("ゲームモードの変更はできません");
+            if (player.getGameMode() != GameMode.SURVIVAL) {
+                player.setGameMode(GameMode.SURVIVAL);
+            } else {
+                e.setCancelled(true);
+            }
         }
     }
 
