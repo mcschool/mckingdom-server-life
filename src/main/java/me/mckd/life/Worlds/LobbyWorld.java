@@ -101,6 +101,10 @@ public class LobbyWorld implements Listener {
         if (name.equals("goto Endless")) {
             player.performCommand("mvtp endless");
         }
+        if (name.equals("ChangeMoney")) {
+            player.sendMessage("こんにちわ");
+        }
+
     }
 }
 
