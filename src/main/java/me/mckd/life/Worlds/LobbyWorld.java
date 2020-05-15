@@ -50,9 +50,6 @@ public class LobbyWorld implements Listener {
         if (player.getWorld().getName().equals(this.worldName)) {
             this.changeWorld(player);
             player.setGameMode(GameMode.ADVENTURE);
-
-            SidebarService sidebarService = new SidebarService(player);
-            sidebarService.show();
         }
     }
 
@@ -95,6 +92,9 @@ public class LobbyWorld implements Listener {
         Location location = new Location(Bukkit.getWorld("lobby"), 387, 10, 393);
         player.teleport(location);
         player.setGameMode(GameMode.ADVENTURE);
+
+        SidebarService sidebarService = new SidebarService(player);
+        sidebarService.show();
     }
 
     /**
