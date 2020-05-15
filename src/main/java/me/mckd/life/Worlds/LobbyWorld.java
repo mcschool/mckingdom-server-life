@@ -1,6 +1,7 @@
 package me.mckd.life.Worlds;
 
 import me.mckd.life.Life;
+import me.mckd.life.Services.SidebarService;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -50,15 +51,8 @@ public class LobbyWorld implements Listener {
             this.changeWorld(player);
             player.setGameMode(GameMode.ADVENTURE);
 
-            // スコアボード
-            ScoreboardManager manager = Bukkit.getScoreboardManager();
-            Scoreboard board = manager.getMainScoreboard();
-            Objective obj = board.registerNewObjective("a", "b");
-            obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-            obj.setDisplayName("ステータス");
-            Score money = obj.getScore("お金");
-            money.setScore(100);
-            player.setScoreboard(board);
+            SidebarService sidebarService = new SidebarService(player);
+            sidebarService.show();
         }
     }
 
