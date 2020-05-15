@@ -94,7 +94,7 @@ public class LobbyWorld implements Listener {
     @EventHandler
     public void onPlayerInteractEntity(PlayerInteractAtEntityEvent e) {
         Player player = e.getPlayer();
-        if (player.getWorld().getName().equals(this.worldName)) {
+        if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
         String name = e.getRightClicked().getName();
