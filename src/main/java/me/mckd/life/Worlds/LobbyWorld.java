@@ -230,6 +230,10 @@ public class LobbyWorld implements Listener {
             c.set(key, nextMoney);
             this.plugin.saveConfig();
 
+            // サイドバー更新
+            SidebarService sidebarService = new SidebarService(this.plugin, player);
+            sidebarService.show();
+
             // メッセージ整形
             for (String s: m) {
                 player.sendMessage(s);

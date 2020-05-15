@@ -17,9 +17,11 @@ public class SidebarService {
     }
 
     public void show() {
-        String key = player.getUniqueId() + "-money";
+        String moneyKey = player.getUniqueId() + "-money";
+        String killedMonsterKey = player.getUniqueId() + "-killed-monster";
         FileConfiguration c = this.plugin.getConfig();
-        int currentMoney = c.getInt(key);
+        int currentMoney = c.getInt(moneyKey);
+        int currentKilledMonster = c.getInt(killedMonsterKey);
 
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getNewScoreboard();
@@ -31,10 +33,7 @@ public class SidebarService {
         money.setScore(currentMoney);
 
         Score monster = obj.getScore("KilledMonster:");
-        monster.setScore(0);
-
-        Score died = obj.getScore("Died:");
-        died.setScore(0);
+        monster.setScore(currentKilledMonster);
 
         this.player.setScoreboard(board);
     }
