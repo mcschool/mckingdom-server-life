@@ -29,18 +29,6 @@ public class EndlessWorld implements Listener {
         player.setGameMode(GameMode.SURVIVAL);
     }
 
-
-    // サバイバルワールドは管理者でもゲームモードの変更はできないように
-    @EventHandler
-    public void onPlayerGameModeChangeEvent(PlayerGameModeChangeEvent e) {
-        if (e.getPlayer().getWorld().getName().equals(this.worldName)) {
-            Player player = e.getPlayer();
-            if (player.getGameMode() != GameMode.SURVIVAL) {
-                player.setGameMode(GameMode.SURVIVAL);
-            }
-        }
-    }
-
     @EventHandler
     public void onPlayerInteractEntity(PlayerInteractAtEntityEvent e) {
         Player player = e.getPlayer();
