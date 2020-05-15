@@ -150,7 +150,6 @@ public class LobbyWorld implements Listener {
             ItemStack item = inv.getItem(i);
             Bukkit.getLogger().info(item.toString());
             if (item != null) {
-                Bukkit.getLogger().info(item.toString());
                 price += this.getItemPrice(item);
             }
         }
@@ -159,6 +158,9 @@ public class LobbyWorld implements Listener {
 
     public int getItemPrice(ItemStack item) {
         Material type = item.getType();
+        Bukkit.getLogger().info("====");
+        Bukkit.getLogger().info(type.name());
+        Bukkit.getLogger().info("====");
         if (type == Material.DIAMOND) return 1000;
         return 1;
     }
