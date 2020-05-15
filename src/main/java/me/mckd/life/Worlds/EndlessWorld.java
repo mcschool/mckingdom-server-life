@@ -37,8 +37,6 @@ public class EndlessWorld implements Listener {
             Player player = e.getPlayer();
             if (player.getGameMode() != GameMode.SURVIVAL) {
                 player.setGameMode(GameMode.SURVIVAL);
-            } else {
-                e.setCancelled(true);
             }
         }
     }
