@@ -15,12 +15,18 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class LobbyWorld implements Listener {
+
+    private Life plugin;
     public String worldName = "lobby";
 
+
     public LobbyWorld(Life plugin) {
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        // コンストラクタ
+        this.plugin = plugin;
+        this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
@@ -115,7 +121,13 @@ public class LobbyWorld implements Listener {
         Inventory inv;
         inv = Bukkit.createInventory(null, 9, "換金所");
         inv.clear();
-        player.openInventory(inv);
+        player.sendTitle("ようこそ 換金所 へ", "ゲットしたアイテムをお金に変えることができます",0, 20, 0);
+        new BukkitRunnable() {
+            @Override
+            public void run () {
+                player.openInventory(inv);
+            }
+        }.runTaskLater(this.plugin, 20);
     }
 
     @EventHandler
