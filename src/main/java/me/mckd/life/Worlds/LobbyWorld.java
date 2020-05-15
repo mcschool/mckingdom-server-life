@@ -2,6 +2,7 @@ package me.mckd.life.Worlds;
 
 import me.mckd.life.Life;
 import org.bukkit.*;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,6 +17,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LobbyWorld implements Listener {
 
@@ -146,21 +150,37 @@ public class LobbyWorld implements Listener {
 
     public void changeMoney(Player player, Inventory inv) {
         int price = 0;
+        List<String> m = new ArrayList<String>();
         for (int i = 0; i < inv.getSize(); i++) {
             ItemStack item = inv.getItem(i);
             if (item != null) {
-                price += this.getItemPrice(item);
+                int p = this.getItemPrice(item);
+                price += p;
+                m.add(item.getItemMeta().getDisplayName() + "x" + item.getAmount() + "=" + p);
             }
         }
-        player.sendMessage(price + "円になりました");
+        if (m.size() > 0) {
+            // データ保存
+            String key = player.getUniqueId() + "-money";
+            FileConfiguration c = this.plugin.getConfig();
+            int myMoney = c.getInt(key);
+            int nextMoney = myMoney + price;
+            c.set(key, nextMoney);
+
+            // メッセージ整形
+            for (String s: m) {
+                player.sendMessage(s);
+            }
+            player.sendMessage("---");
+            player.sendMessage(price + "円になりました");
+        } else {
+            player.sendMessage("アイテムを選択していないので何も売りませんでした");
+        }
     }
 
     public int getItemPrice(ItemStack item) {
         Material type = item.getType();
-        Bukkit.getLogger().info("====");
-        Bukkit.getLogger().info(type.name());
-        Bukkit.getLogger().info("====");
-        if (type == Material.DIAMOND) return 1000;
+        if (type == Material.DIAMOND) return item.getAmount() * 1000;
         return 1;
     }
 }
