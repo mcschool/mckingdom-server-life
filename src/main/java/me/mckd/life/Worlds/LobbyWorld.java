@@ -16,6 +16,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -121,10 +122,23 @@ public class LobbyWorld implements Listener {
     }
 
     public void openItemShop(Player player) {
+        String key = player.getUniqueId() + "-money";
+        FileConfiguration c = this.plugin.getConfig();
+        int currentMoney = c.getInt(key);
+
         Inventory inv;
-        inv = Bukkit.createInventory(null, 9, "アイテムショップ: 所持金");
+        inv = Bukkit.createInventory(null, 9, "[ショップ]　所持金　" + currentMoney + "円");
+        inv.setItem(0, this.setItem(Material.WOOD, "100", 32));
         inv.clear();
         player.openInventory(inv);
+    }
+
+    private ItemStack setItem(Material material, String name, int count) {
+        ItemStack itemStack = new ItemStack(material, count);
+        ItemMeta itemMeta  = itemStack.getItemMeta();
+        itemMeta.setDisplayName(name);
+        itemStack.setItemMeta(itemMeta);
+        return itemStack;
     }
 
     /**
