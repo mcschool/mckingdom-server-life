@@ -157,6 +157,8 @@ public class LobbyWorld implements Listener {
                 inv.clear();
                 inv.setItem(0, setItem(Material.WOOD, "320円", 32));
                 inv.setItem(1, setItem(Material.DIAMOND, "1500円", 1));
+                inv.setItem(2, setItem(Material.APPLE, "100円", 1));
+                inv.setItem(3, setItem(Material.CHEST, "80円", 1));
                 player.openInventory(inv);
             }
         }.runTaskLater(this.plugin, 20);
