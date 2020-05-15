@@ -279,6 +279,10 @@ public class LobbyWorld implements Listener {
     public int getItemPrice(ItemStack item) {
         Material type = item.getType();
         if (type == Material.DIAMOND) return item.getAmount() * 1000;
+        if (type == Material.IRON_INGOT) return item.getAmount() * 100;
+        if (type == Material.COAL) return item.getAmount() * 10;
+        if (type == Material.GLASS) return item.getAmount() * 10;
+
         return item.getAmount() * 1;
     }
 }
