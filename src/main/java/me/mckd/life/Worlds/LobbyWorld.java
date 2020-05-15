@@ -96,6 +96,8 @@ public class LobbyWorld implements Listener {
         player.teleport(location);
         player.setGameMode(GameMode.ADVENTURE);
 
+        player.sendTitle("生活・経済サーバー", "みんなでのんびり生活クラフト", 20, 20, 20);
+
         SidebarService sidebarService = new SidebarService(this.plugin, player);
         sidebarService.show();
     }
