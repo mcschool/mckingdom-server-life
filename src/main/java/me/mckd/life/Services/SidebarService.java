@@ -33,8 +33,8 @@ public class SidebarService {
         Score monster = obj.getScore("KilledMonster:");
         monster.setScore(0);
 
-        Score blockBreak = obj.getScore("BlockBreak:");
-        monster.setScore(0);
+        Score died = obj.getScore("Died:");
+        died.setScore(0);
 
         this.player.setScoreboard(board);
     }
