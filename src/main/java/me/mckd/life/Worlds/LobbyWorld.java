@@ -9,7 +9,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class LobbyWorld implements Listener {
@@ -74,6 +77,28 @@ public class LobbyWorld implements Listener {
         Location location = new Location(Bukkit.getWorld("lobby"), 387, 10, 393);
         player.teleport(location);
         player.setGameMode(GameMode.ADVENTURE);
+    }
+
+    /**
+     * 空腹度を減らさない
+     * フードレベルが変化した時に呼ばれるイベント
+     * @param e
+     */
+    @EventHandler
+    public void onFoodLevelChangeEvent(FoodLevelChangeEvent e){
+        if(e.getEntity().getWorld().getName().equals(this.worldName)){
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerInteractEntity(PlayerInteractAtEntityEvent e) {
+        Player player = e.getPlayer();
+        if (player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        String name = e.getRightClicked().getName();
+        player.sendMessage(name);
     }
 }
 
