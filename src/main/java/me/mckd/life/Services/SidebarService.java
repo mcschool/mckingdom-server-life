@@ -15,7 +15,7 @@ public class SidebarService {
     public void show() {
         // スコアボード
         ScoreboardManager manager = Bukkit.getScoreboardManager();
-        Scoreboard board = manager.getMainScoreboard();
+        Scoreboard board = manager.getNewScoreboard();
         Objective obj = board.registerNewObjective("a", "b");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
         obj.setDisplayName("ステータス");
