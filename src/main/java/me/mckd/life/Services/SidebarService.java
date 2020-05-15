@@ -13,13 +13,15 @@ public class SidebarService {
     }
 
     public void show() {
+        Bukkit.getLogger().info("show Sidebar");
+        Bukkit.getLogger().info("---");
         // スコアボード
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getNewScoreboard();
         Objective obj = board.registerNewObjective("a", "b");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        obj.setDisplayName("ステータス");
-        Score money = obj.getScore("お金");
+        obj.setDisplayName("status");
+        Score money = obj.getScore("money");
         money.setScore(100);
         this.player.setScoreboard(board);
     }
