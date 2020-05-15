@@ -8,6 +8,10 @@ public final class Life extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // BungeeCordに繋ぐための前処理
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
+        // 各種コードをロード
         new LobbyWorld(this);
         new EndlessWorld(this);
     }

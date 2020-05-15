@@ -22,6 +22,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,6 +119,9 @@ public class LobbyWorld implements Listener {
             return;
         }
         String name = e.getRightClicked().getName();
+        if (name.equals("メインロビー")) {
+            this.gotoMainLobby(player);
+        }
         if (name.equals("goto Endless")) {
             player.performCommand("mvtp endless");
         }
@@ -125,6 +130,18 @@ public class LobbyWorld implements Listener {
         }
         if (name.equals("ItemShop")) {
             this.openItemShop(player);
+        }
+    }
+
+    public void gotoMainLobby(Player player) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            DataOutputStream dos = new DataOutputStream(baos);
+            dos.writeUTF("Connect");
+            dos.writeUTF("lobby");
+            player.sendPluginMessage(this.plugin, "BungeeCord", baos.toByteArray());
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
