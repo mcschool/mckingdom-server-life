@@ -173,6 +173,7 @@ public class LobbyWorld implements Listener {
             }
             player.sendMessage("---");
             player.sendMessage(price + "円になりました");
+            player.sendMessage("所持金:" + nextMoney + "円");
         } else {
             player.sendMessage("アイテムを選択していないので何も売りませんでした");
         }
