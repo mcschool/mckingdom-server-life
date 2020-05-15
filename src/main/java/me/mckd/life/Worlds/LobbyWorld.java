@@ -115,6 +115,16 @@ public class LobbyWorld implements Listener {
         if (name.equals("ChangeMoney")) {
             this.openCashOffice(player);
         }
+        if (name.equals("ItemShop")) {
+            this.openItemShop(player);
+        }
+    }
+
+    public void openItemShop(Player player) {
+        Inventory inv;
+        inv = Bukkit.createInventory(null, 9, "アイテムショップ: 所持金");
+        inv.clear();
+        player.openInventory(inv);
     }
 
     /**
@@ -125,13 +135,13 @@ public class LobbyWorld implements Listener {
         Inventory inv;
         inv = Bukkit.createInventory(null, 9, "換金所");
         inv.clear();
-        player.sendTitle("ようこそ 換金所 へ", "ゲットしたアイテムをお金に変えることができます",0, 40, 0);
+        player.sendTitle("ようこそ 換金所 へ", "ゲットしたアイテムをお金に変えることができます",0, 30, 0);
         new BukkitRunnable() {
             @Override
             public void run () {
                 player.openInventory(inv);
             }
-        }.runTaskLater(this.plugin, 40);
+        }.runTaskLater(this.plugin, 30);
     }
 
     @EventHandler
