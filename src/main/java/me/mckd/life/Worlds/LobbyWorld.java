@@ -227,6 +227,7 @@ public class LobbyWorld implements Listener {
             int myMoney = c.getInt(key);
             int nextMoney = myMoney + price;
             c.set(key, nextMoney);
+            this.plugin.saveConfig();
 
             // メッセージ整形
             for (String s: m) {
