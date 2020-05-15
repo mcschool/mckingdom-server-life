@@ -38,8 +38,4 @@ public class SidebarService {
 
         this.player.setScoreboard(board);
     }
-
-    public void update() {
-
-    }
 }

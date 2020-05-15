@@ -93,7 +93,7 @@ public class LobbyWorld implements Listener {
         player.teleport(location);
         player.setGameMode(GameMode.ADVENTURE);
 
-        SidebarService sidebarService = new SidebarService(player);
+        SidebarService sidebarService = new SidebarService(this.plugin, player);
         sidebarService.show();
     }
 
@@ -133,7 +133,7 @@ public class LobbyWorld implements Listener {
         int currentMoney = c.getInt(key);
 
         Inventory inv;
-        inv = Bukkit.createInventory(null, 9, "[ショップ]　所持金　" + currentMoney + "円");
+        inv = Bukkit.createInventory(null, 45, "アイテムショップ");
         inv.clear();
         inv.setItem(0, this.setItem(Material.WOOD, "320円", 32));
         inv.setItem(1, this.setItem(Material.DIAMOND, "1500円", 1));
@@ -173,6 +173,26 @@ public class LobbyWorld implements Listener {
         }
 
         Inventory inv = e.getInventory();
+        String invName = inv.getName();
+        if (invName.equals("アイテムショップ")) {
+            String key = player.getUniqueId() + "-money";
+            FileConfiguration c = this.plugin.getConfig();
+            int currentMoney = c.getInt(key);
+            String itemName = "";
+            if (e.getCurrentItem().hasItemMeta()) {
+                itemName = e.getCurrentItem().getItemMeta().getDisplayName();
+            }
+            if (itemName.equals("")) return;
+            if (e.getRawSlot() > 45) return;
+            int price = Integer.parseInt(itemName.replace("円", ""));
+            if (currentMoney < price) {
+                Bukkit.getLogger().info("お金が足りません");
+                e.setCancelled(true);
+                return;
+            }
+            Bukkit.getLogger().info("お金足りました");
+
+        }
     }
 
     @EventHandler
