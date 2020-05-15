@@ -121,13 +121,13 @@ public class LobbyWorld implements Listener {
         Inventory inv;
         inv = Bukkit.createInventory(null, 9, "換金所");
         inv.clear();
-        player.sendTitle("ようこそ 換金所 へ", "ゲットしたアイテムをお金に変えることができます",0, 20, 0);
+        player.sendTitle("ようこそ 換金所 へ", "ゲットしたアイテムをお金に変えることができます",0, 40, 0);
         new BukkitRunnable() {
             @Override
             public void run () {
                 player.openInventory(inv);
             }
-        }.runTaskLater(this.plugin, 20);
+        }.runTaskLater(this.plugin, 40);
     }
 
     @EventHandler
@@ -148,8 +148,8 @@ public class LobbyWorld implements Listener {
         int price = 0;
         for (int i = 0; i < inv.getSize(); i++) {
             ItemStack item = inv.getItem(i);
-            Bukkit.getLogger().info(item.toString());
             if (item.getType() != null) {
+                Bukkit.getLogger().info(item.toString());
                 price += this.getItemPrice(item);
             }
         }
