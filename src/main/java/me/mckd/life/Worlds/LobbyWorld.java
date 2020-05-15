@@ -156,7 +156,7 @@ public class LobbyWorld implements Listener {
             if (item != null) {
                 int p = this.getItemPrice(item);
                 price += p;
-                m.add(item.getItemMeta().getDisplayName() + "x" + item.getAmount() + "=" + p);
+                m.add(item.getType().name() + "x" + item.getAmount() + "=" + p);
             }
         }
         if (m.size() > 0) {
@@ -181,7 +181,7 @@ public class LobbyWorld implements Listener {
     public int getItemPrice(ItemStack item) {
         Material type = item.getType();
         if (type == Material.DIAMOND) return item.getAmount() * 1000;
-        return 1;
+        return item.getAmount() * 1;
     }
 }
 
