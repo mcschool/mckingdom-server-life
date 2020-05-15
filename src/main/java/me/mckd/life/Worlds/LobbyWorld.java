@@ -128,12 +128,18 @@ public class LobbyWorld implements Listener {
     }
 
     public void openItemShop(Player player) {
-        Inventory inv;
-        inv = Bukkit.createInventory(null, 45, "アイテムショップ");
-        inv.clear();
-        inv.setItem(0, this.setItem(Material.WOOD, "320円", 32));
-        inv.setItem(1, this.setItem(Material.DIAMOND, "1500円", 1));
-        player.openInventory(inv);
+        player.sendTitle("ようこそ アイテムショップ へ", "ゲットしたお金でアイテムを購入できます",0, 20, 0);
+        new BukkitRunnable() {
+            @Override
+            public void run () {
+                Inventory inv;
+                inv = Bukkit.createInventory(null, 45, "アイテムショップ");
+                inv.clear();
+                inv.setItem(0, setItem(Material.WOOD, "320円", 32));
+                inv.setItem(1, setItem(Material.DIAMOND, "1500円", 1));
+                player.openInventory(inv);
+            }
+        }.runTaskLater(this.plugin, 20);
     }
 
     private ItemStack setItem(Material material, String name, int count) {
@@ -152,13 +158,13 @@ public class LobbyWorld implements Listener {
         Inventory inv;
         inv = Bukkit.createInventory(null, 9, "換金所");
         inv.clear();
-        player.sendTitle("ようこそ 換金所 へ", "ゲットしたアイテムをお金に変えることができます",0, 30, 0);
+        player.sendTitle("ようこそ 換金所 へ", "ゲットしたアイテムをお金に変えることができます",0, 20, 0);
         new BukkitRunnable() {
             @Override
             public void run () {
                 player.openInventory(inv);
             }
-        }.runTaskLater(this.plugin, 30);
+        }.runTaskLater(this.plugin, 20);
     }
 
     @EventHandler
@@ -193,6 +199,10 @@ public class LobbyWorld implements Listener {
             int nextMoney = myMoney - price;
             c.set(key, nextMoney);
             this.plugin.saveConfig();
+            player.sendMessage("所持金が" + nextMoney + "円になりました");
+            // サイドバー更新
+            SidebarService sidebarService = new SidebarService(this.plugin, player);
+            sidebarService.show();
         }
     }
 
