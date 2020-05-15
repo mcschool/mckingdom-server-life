@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
@@ -18,6 +19,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,14 @@ public class LobbyWorld implements Listener {
         if (player.getWorld().getName().equals(this.worldName)) {
             this.changeWorld(player);
             player.setGameMode(GameMode.SURVIVAL);
+
+            // スコアボード
+            ScoreboardManager manager = Bukkit.getScoreboardManager();
+            Scoreboard board = manager.getMainScoreboard();
+            Objective obj = board.registerNewObjective("a", "b");
+            obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+            Score money = obj.getScore("お金");
+            money.setScore(100);
         }
     }
 
@@ -128,8 +138,9 @@ public class LobbyWorld implements Listener {
 
         Inventory inv;
         inv = Bukkit.createInventory(null, 9, "[ショップ]　所持金　" + currentMoney + "円");
-        inv.setItem(0, this.setItem(Material.WOOD, "100", 32));
         inv.clear();
+        inv.setItem(0, this.setItem(Material.WOOD, "320円", 32));
+        inv.setItem(1, this.setItem(Material.DIAMOND, "1500円", 1));
         player.openInventory(inv);
     }
 
@@ -156,6 +167,16 @@ public class LobbyWorld implements Listener {
                 player.openInventory(inv);
             }
         }.runTaskLater(this.plugin, 30);
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent e) {
+        Player player = (Player) e.getWhoClicked();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+
+        Inventory inv = e.getInventory();
     }
 
     @EventHandler
