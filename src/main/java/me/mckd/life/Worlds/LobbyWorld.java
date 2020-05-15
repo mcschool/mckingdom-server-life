@@ -14,6 +14,7 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
 
 public class LobbyWorld implements Listener {
     public String worldName = "lobby";
@@ -102,9 +103,15 @@ public class LobbyWorld implements Listener {
             player.performCommand("mvtp endless");
         }
         if (name.equals("ChangeMoney")) {
-            player.sendMessage("こんにちわ");
+            this.openCashOffice(player);
         }
+    }
 
+    public void openCashOffice(Player player) {
+        Inventory inv;
+        inv = Bukkit.createInventory(null, 9, "換金所");
+        inv.clear();
+        player.openInventory(inv);
     }
 }
 
