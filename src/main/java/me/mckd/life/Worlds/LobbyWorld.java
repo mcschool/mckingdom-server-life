@@ -57,6 +57,7 @@ public class LobbyWorld implements Listener {
             obj.setDisplaySlot(DisplaySlot.SIDEBAR);
             Score money = obj.getScore("お金");
             money.setScore(100);
+            player.setScoreboard(board);
         }
     }
 
