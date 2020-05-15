@@ -128,10 +128,6 @@ public class LobbyWorld implements Listener {
     }
 
     public void openItemShop(Player player) {
-        String key = player.getUniqueId() + "-money";
-        FileConfiguration c = this.plugin.getConfig();
-        int currentMoney = c.getInt(key);
-
         Inventory inv;
         inv = Bukkit.createInventory(null, 45, "アイテムショップ");
         inv.clear();
@@ -178,20 +174,25 @@ public class LobbyWorld implements Listener {
             String key = player.getUniqueId() + "-money";
             FileConfiguration c = this.plugin.getConfig();
             int currentMoney = c.getInt(key);
+
             String itemName = "";
             if (e.getCurrentItem().hasItemMeta()) {
                 itemName = e.getCurrentItem().getItemMeta().getDisplayName();
             }
             if (itemName.equals("")) return;
             if (e.getRawSlot() > 45) return;
+
             int price = Integer.parseInt(itemName.replace("円", ""));
             if (currentMoney < price) {
                 Bukkit.getLogger().info("お金が足りません");
                 e.setCancelled(true);
                 return;
             }
-            Bukkit.getLogger().info("お金足りました");
 
+            int myMoney = c.getInt(key);
+            int nextMoney = myMoney - price;
+            c.set(key, nextMoney);
+            this.plugin.saveConfig();
         }
     }
 
