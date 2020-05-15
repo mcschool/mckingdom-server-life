@@ -98,7 +98,9 @@ public class LobbyWorld implements Listener {
             return;
         }
         String name = e.getRightClicked().getName();
-        player.sendMessage(name);
+        if (name.equals("goto Endless")) {
+            player.performCommand("mvtp endless");
+        }
     }
 }
 
