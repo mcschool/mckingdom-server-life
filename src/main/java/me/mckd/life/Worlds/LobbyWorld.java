@@ -48,13 +48,14 @@ public class LobbyWorld implements Listener {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
             this.changeWorld(player);
-            player.setGameMode(GameMode.SURVIVAL);
+            player.setGameMode(GameMode.ADVENTURE);
 
             // スコアボード
             ScoreboardManager manager = Bukkit.getScoreboardManager();
             Scoreboard board = manager.getMainScoreboard();
             Objective obj = board.registerNewObjective("a", "b");
             obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+            obj.setDisplayName("ステータス");
             Score money = obj.getScore("お金");
             money.setScore(100);
             player.setScoreboard(board);
