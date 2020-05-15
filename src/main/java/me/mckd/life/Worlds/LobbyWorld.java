@@ -148,7 +148,6 @@ public class LobbyWorld implements Listener {
         int price = 0;
         for (int i = 0; i < inv.getSize(); i++) {
             ItemStack item = inv.getItem(i);
-            Bukkit.getLogger().info(item.toString());
             if (item != null) {
                 price += this.getItemPrice(item);
             }
