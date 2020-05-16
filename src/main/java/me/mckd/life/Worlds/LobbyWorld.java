@@ -264,6 +264,13 @@ public class LobbyWorld implements Listener {
             SidebarService sidebarService = new SidebarService(this.plugin, player);
             sidebarService.show();
         }
+
+
+        if (invName.equals("メニュー")) {
+            if(e.getCurrentItem().equals(Material.DIAMOND)){
+                player.sendMessage("You clicked a diamond in menu box");
+            }
+        }
     }
 
     /**
