@@ -155,10 +155,11 @@ public class LobbyWorld implements Listener {
                 Inventory inv;
                 inv = Bukkit.createInventory(null, 45, "アイテムショップ");
                 inv.clear();
-                inv.setItem(0, setItem(Material.WOOD, "320円", 32));
-                inv.setItem(1, setItem(Material.DIAMOND, "1500円", 1));
-                inv.setItem(2, setItem(Material.APPLE, "100円", 1));
-                inv.setItem(3, setItem(Material.CHEST, "80円", 1));
+                inv.setItem(0, setItem(Material.WOOD, "160円", 32));
+                inv.setItem(1, setItem(Material.LOG, "320円", 16));
+                inv.setItem(2, setItem(Material.DIAMOND, "1500円", 1));
+                inv.setItem(3, setItem(Material.APPLE, "100円", 1));
+                inv.setItem(4, setItem(Material.CHEST, "80円", 1));
                 player.openInventory(inv);
             }
         }.runTaskLater(this.plugin, 20);
@@ -281,7 +282,9 @@ public class LobbyWorld implements Listener {
     public int getItemPrice(ItemStack item) {
         Material type = item.getType();
         if (type == Material.DIAMOND) return item.getAmount() * 1000;
+        if (type == Material.EMERALD) return item.getAmount() * 1500;
         if (type == Material.IRON_INGOT) return item.getAmount() * 100;
+        if (type == Material.GOLD_INGOT) return item.getAmount() * 250;
         if (type == Material.COAL) return item.getAmount() * 10;
         if (type == Material.GLASS) return item.getAmount() * 10;
 
