@@ -267,7 +267,7 @@ public class LobbyWorld implements Listener {
 
 
         if (invName.equals("メニュー")) {
-            if(e.getCurrentItem().equals(Material.DIAMOND)){
+            if(e.getCurrentItem().getType() == (Material.DIAMOND)){
                 player.sendMessage("You clicked a diamond in menu box");
             }
         }
