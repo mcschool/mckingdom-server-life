@@ -134,6 +134,9 @@ public class LobbyWorld implements Listener {
         if (name.equals("ItemShop")) {
             this.openItemShop(player);
         }
+        if (name.equals("Menu")) {
+            this.openMenu(player);
+        }
     }
 
     /**
@@ -176,6 +179,17 @@ public class LobbyWorld implements Listener {
     }
 
     /**
+     * Menuをクリックした場合インベントリを開く
+     */
+    public void openMenu(Player player){
+        player.sendTitle("ようこそ メニュー へ", "ゲットしたお金でランクが買えます",0, 20, 0);
+        Inventory inv;
+        inv = Bukkit.createInventory(null, 45, "メニュー");
+        inv.clear();
+        inv.setItem(0, setItem(Material.DIAMOND, "ランク１", 1));
+    }
+
+    /**
      * アイテムを生成するのに手順ふむの面倒なので関数化
      * @param material
      * @param name
@@ -206,6 +220,8 @@ public class LobbyWorld implements Listener {
             }
         }.runTaskLater(this.plugin, 20);
     }
+
+
 
     /**
      * 開いているショップのインベントリをクリックしたとき
