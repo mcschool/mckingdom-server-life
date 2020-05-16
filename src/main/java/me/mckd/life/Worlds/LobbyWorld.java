@@ -73,6 +73,7 @@ public class LobbyWorld implements Listener {
 
     /**
      * ブロックを置けないように
+     * ロビーはアドベンチャーだけど念の為
      * @param e
      */
     @EventHandler
@@ -135,6 +136,10 @@ public class LobbyWorld implements Listener {
         }
     }
 
+    /**
+     * サーバー間の移動をするためmvtpではダメで少し特殊な方法
+     * @param player
+     */
     public void gotoMainLobby(Player player) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -147,8 +152,13 @@ public class LobbyWorld implements Listener {
         }
     }
 
+    /**
+     * アイテムショップを右クリックしたときにショップ開く
+     * @param player
+     */
     public void openItemShop(Player player) {
         player.sendTitle("ようこそ アイテムショップ へ", "ゲットしたお金でアイテムを購入できます",0, 20, 0);
+        // 1秒遅延させてショップ開く。なんとなく..
         new BukkitRunnable() {
             @Override
             public void run () {
@@ -165,6 +175,13 @@ public class LobbyWorld implements Listener {
         }.runTaskLater(this.plugin, 20);
     }
 
+    /**
+     * アイテムを生成するのに手順ふむの面倒なので関数化
+     * @param material
+     * @param name
+     * @param count
+     * @return
+     */
     private ItemStack setItem(Material material, String name, int count) {
         ItemStack itemStack = new ItemStack(material, count);
         ItemMeta itemMeta  = itemStack.getItemMeta();
@@ -190,6 +207,10 @@ public class LobbyWorld implements Listener {
         }.runTaskLater(this.plugin, 20);
     }
 
+    /**
+     * 開いているショップのインベントリをクリックしたとき
+     * @param e
+     */
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
         Player player = (Player) e.getWhoClicked();
@@ -229,6 +250,10 @@ public class LobbyWorld implements Listener {
         }
     }
 
+    /**
+     * インベントリを閉じるときに呼ばれる
+     * @param e
+     */
     @EventHandler
     public void onInventoryCloseEvent(InventoryCloseEvent e) {
         World world = e.getPlayer().getWorld();
@@ -243,6 +268,11 @@ public class LobbyWorld implements Listener {
         }
     }
 
+    /**
+     * 換金処理
+     * @param player
+     * @param inv
+     */
     public void changeMoney(Player player, Inventory inv) {
         int price = 0;
         List<String> m = new ArrayList<String>();
@@ -279,6 +309,12 @@ public class LobbyWorld implements Listener {
         }
     }
 
+    /**
+     * アイテムの売価
+     * あとで別クラスに分けた方が良さげ
+     * @param item
+     * @return
+     */
     public int getItemPrice(ItemStack item) {
         Material type = item.getType();
         if (type == Material.DIAMOND) return item.getAmount() * 1000;
