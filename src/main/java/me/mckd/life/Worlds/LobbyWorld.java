@@ -285,6 +285,7 @@ public class LobbyWorld implements Listener {
         if (type == Material.EMERALD) return item.getAmount() * 1500;
         if (type == Material.IRON_INGOT) return item.getAmount() * 100;
         if (type == Material.GOLD_INGOT) return item.getAmount() * 250;
+        if (type == Material.REDSTONE) return item.getAmount() * 20;
         if (type == Material.COAL) return item.getAmount() * 10;
         if (type == Material.GLASS) return item.getAmount() * 10;
 
