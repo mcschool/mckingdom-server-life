@@ -11,6 +11,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
@@ -82,4 +83,15 @@ public class EndlessWorld implements Listener {
         }
     }
 
+    /**
+     * ブロックが燃え広がる時
+     * 放火防止
+     * @param e
+     */
+    @EventHandler
+    public void onBlockSpread(BlockSpreadEvent e) {
+        if (e.getBlock().getWorld().getName().equals(this.worldName)) {
+            e.setCancelled(true);
+        }
+    }
 }

@@ -191,7 +191,12 @@ public class LobbyWorld implements Listener {
                 String key = player.getUniqueId() + "-money";
                 FileConfiguration c = plugin.getConfig();
                 int currentMoney = c.getInt(key);
-                player.sendMessage(":" + currentMoney);
+                // player.sendMessage(":" + currentMoney);
+
+                // TODO: ランク確認 テストあとで消す
+                String rankKey = player.getUniqueId() + "-rank";
+                int currentRank = plugin.getConfig().getInt(rankKey);
+                player.sendMessage("rank:" + currentRank);
 
                 Inventory inv;
                 inv = Bukkit.createInventory(null, 45, "メニュー");
