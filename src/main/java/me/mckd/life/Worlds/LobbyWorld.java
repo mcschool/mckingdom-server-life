@@ -182,11 +182,21 @@ public class LobbyWorld implements Listener {
      * Menuをクリックした場合インベントリを開く
      */
     public void openMenu(Player player){
-        player.sendTitle("ようこそ メニュー へ", "ゲットしたお金でランクが買えます",0, 20, 0);
-        Inventory inv;
-        inv = Bukkit.createInventory(null, 45, "メニュー");
-        inv.clear();
-        inv.setItem(0, setItem(Material.DIAMOND, "ランク１", 1));
+        player.sendTitle("メニュー", "プレーヤーメニュー",0, 20, 0);
+        new BukkitRunnable() {
+            @Override
+            public void run () {
+                String key = player.getUniqueId() + "-money";
+                FileConfiguration c = plugin.getConfig();
+                int currentMoney = c.getInt(key);
+                player.sendMessage(":" + currentMoney);
+
+                Inventory inv;
+                inv = Bukkit.createInventory(null, 45, "メニュー");
+                inv.clear();
+                inv.setItem(0, setItem(Material.DIAMOND, "ランクアップ", 1));
+            }
+        }.runTaskLater(this.plugin, 20);
     }
 
     /**
@@ -209,18 +219,17 @@ public class LobbyWorld implements Listener {
      * @param player
      */
     public void openCashOffice(Player player) {
-        Inventory inv;
-        inv = Bukkit.createInventory(null, 9, "換金所");
-        inv.clear();
         player.sendTitle("ようこそ 換金所 へ", "ゲットしたアイテムをお金に変えることができます",0, 20, 0);
         new BukkitRunnable() {
             @Override
             public void run () {
+                Inventory inv;
+                inv = Bukkit.createInventory(null, 9, "換金所");
+                inv.clear();
                 player.openInventory(inv);
             }
         }.runTaskLater(this.plugin, 20);
     }
-
 
 
     /**
