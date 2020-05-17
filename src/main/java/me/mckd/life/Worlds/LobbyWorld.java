@@ -53,6 +53,8 @@ public class LobbyWorld implements Listener {
             this.changeWorld(player);
             player.setGameMode(GameMode.ADVENTURE);
             player.getWorld().setPVP(false);
+            String name = player.getDisplayName();
+            player.setCustomName(name + " ★0");
         }
     }
 
