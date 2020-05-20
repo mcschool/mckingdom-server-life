@@ -81,6 +81,9 @@ public class EndlessWorld implements Listener {
         if (name.equals("goto Lobby")) {
             player.performCommand("mvtp lobby");
         }
+        if (name.equals("Nether")){
+            player.performCommand("mvtp nether");
+        }
     }
 
     /**

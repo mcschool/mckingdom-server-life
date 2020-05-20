@@ -6,11 +6,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class NetherWorld implements Listener {
 
     Life plugin;
-    String worldName = "world_nether";
+    String worldName = "nether";
 
     public NetherWorld(Life plugin) {
         // コンストラクタ
@@ -25,6 +27,18 @@ public class NetherWorld implements Listener {
             return;
         }
         player.setGameMode(GameMode.SURVIVAL);
+    }
+
+    @EventHandler
+    public void onPlayerInteractEvent(PlayerInteractAtEntityEvent event){
+        Player player = event.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        String name = event.getRightClicked().getName();
+        if (name.equals("サバイバルに戻る")){
+            player.performCommand("mvtp endless");
+        }
     }
 
 }
