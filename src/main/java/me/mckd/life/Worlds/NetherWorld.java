@@ -36,7 +36,7 @@ public class NetherWorld implements Listener {
             return;
         }
         String name = event.getRightClicked().getName();
-        if (name.equals("サバイバルに戻る")){
+        if (name.equals("survival")){
             player.performCommand("mvtp endless");
         }
     }
