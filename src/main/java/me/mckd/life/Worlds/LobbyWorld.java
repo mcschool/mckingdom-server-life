@@ -139,6 +139,9 @@ public class LobbyWorld implements Listener {
         if (name.equals("Menu")) {
             this.openMenu(player);
         }
+        if (name.equals("Nether")){
+            player.performCommand("mvtp nether");
+        }
     }
 
     /**
