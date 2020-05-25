@@ -86,7 +86,6 @@ public class EndlessWorld implements Listener {
         }
     }
 
-<<<<<<< HEAD
     @EventHandler
     public void onBlockSpreadEvent(BlockSpreadEvent e) {
         if(e.getBlock().getWorld().getName().equals(this.worldName)){
@@ -94,7 +93,6 @@ public class EndlessWorld implements Listener {
         }
     }
 
-=======
     /**
      * ブロックが燃え広がる時
      * 放火防止
@@ -106,5 +104,4 @@ public class EndlessWorld implements Listener {
             e.setCancelled(true);
         }
     }
->>>>>>> c799ffd8c76fc5e1bf5ba0399930173b214c99e6
 }
