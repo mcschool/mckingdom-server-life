@@ -86,22 +86,18 @@ public class EndlessWorld implements Listener {
         }
     }
 
-    @EventHandler
-    public void onBlockSpreadEvent(BlockSpreadEvent e) {
-        if(e.getBlock().getWorld().getName().equals(this.worldName)){
-            e.setCancelled(true);
-        }
-    }
-
     /**
      * ブロックが燃え広がる時
      * 放火防止
      * @param e
      */
+
     @EventHandler
     public void onBlockSpread(BlockSpreadEvent e) {
-        if (e.getBlock().getWorld().getName().equals(this.worldName)) {
+        if(e.getBlock().getWorld().getName().equals(this.worldName)){
             e.setCancelled(true);
         }
     }
+
+
 }
