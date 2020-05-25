@@ -107,8 +107,11 @@ public class EndlessWorld implements Listener {
     }
 
     @EventHandler
-    public void onEntityExplode(EntityExplodeEvent e){
-        if(e.getEntity()instanceof TNTPrimed) {
+    public void onEntityExplode(EntityExplodeEvent e) {
+        if (e.getEntity() instanceof TNTPrimed) {
+            e.setCancelled(true);
+        }
+        if (e.getEntity() instanceof Creeper) {
             e.setCancelled(true);
         }
     }
