@@ -4,18 +4,25 @@ import me.mckd.life.Life;
 import me.mckd.life.Services.SidebarService;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockIgniteEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+
+import java.util.Date;
 
 public class EndlessWorld implements Listener {
 
@@ -86,6 +93,7 @@ public class EndlessWorld implements Listener {
         }
     }
 
+
     /**
      * ブロックが燃え広がる時
      * 放火防止
@@ -111,6 +119,14 @@ public class EndlessWorld implements Listener {
         if(e.getEntity()instanceof TNTPrimed) {
             e.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void BlockPlaceEvent(BlockPlaceEvent event){
+            Block block = event.getBlock();
+            if (block.getType() == Material.CHEST){
+
+            }
     }
 
 
