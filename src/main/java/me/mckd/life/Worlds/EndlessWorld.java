@@ -93,12 +93,12 @@ public class EndlessWorld implements Listener {
      * @param e
      */
 
-    /*@EventHandler
+    @EventHandler
     public void onBlockSpread(BlockSpreadEvent e) {
         if(e.getBlock().getWorld().getName().equals(this.worldName)){
             e.setCancelled(true);
         }
-    }*/
+    }
 
     @EventHandler
     public void onBlockIgnite(BlockIgniteEvent e){
