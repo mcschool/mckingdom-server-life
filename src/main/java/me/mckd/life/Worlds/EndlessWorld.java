@@ -81,8 +81,12 @@ public class EndlessWorld implements Listener {
         if (name.equals("goto Lobby")) {
             player.performCommand("mvtp lobby");
         }
+        if (name.equals("Nether")){
+            player.performCommand("mvtp nether");
+        }
     }
 
+<<<<<<< HEAD
     @EventHandler
     public void onBlockSpreadEvent(BlockSpreadEvent e) {
         if(e.getBlock().getWorld().getName().equals(this.worldName)){
@@ -90,4 +94,17 @@ public class EndlessWorld implements Listener {
         }
     }
 
+=======
+    /**
+     * ブロックが燃え広がる時
+     * 放火防止
+     * @param e
+     */
+    @EventHandler
+    public void onBlockSpread(BlockSpreadEvent e) {
+        if (e.getBlock().getWorld().getName().equals(this.worldName)) {
+            e.setCancelled(true);
+        }
+    }
+>>>>>>> c799ffd8c76fc5e1bf5ba0399930173b214c99e6
 }

@@ -18,6 +18,7 @@ public class SidebarService {
 
     public void show() {
         String moneyKey = player.getUniqueId() + "-money";
+
         String killedMonsterKey = player.getUniqueId() + "-killed-monster";
         FileConfiguration c = this.plugin.getConfig();
         int currentMoney = c.getInt(moneyKey);
@@ -28,6 +29,9 @@ public class SidebarService {
         Objective obj = board.registerNewObjective("a", "b");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
         obj.setDisplayName(player.getDisplayName());
+
+        Score rank = obj.getScore("Rank:");
+        rank.setScore(0);
 
         Score money = obj.getScore("Money:");
         money.setScore(currentMoney);
