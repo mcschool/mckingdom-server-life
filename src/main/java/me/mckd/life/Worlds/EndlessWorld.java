@@ -11,11 +11,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-<<<<<<< HEAD
 import org.bukkit.event.block.BlockBurnEvent;
-=======
 import org.bukkit.event.block.Action;
->>>>>>> 183fc7f00b043d47e140a039e5188239e59d692d
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
@@ -129,18 +126,17 @@ public class EndlessWorld implements Listener {
     }
 
     @EventHandler
-<<<<<<< HEAD
-    public void onBlockBurn(BlockBurnEvent e){
-        if(e.getBlock().getWorld().getName().equals(this.worldName)){
+    public void onBlockBurn(BlockBurnEvent e) {
+        if (e.getBlock().getWorld().getName().equals(this.worldName)) {
             e.setCancelled(true);
         }
-=======
-    public void BlockPlaceEvent(BlockPlaceEvent event){
+    }
+    @EventHandler
+    public void BlockPlaceEvent (BlockPlaceEvent event){
             Block block = event.getBlock();
             if (block.getType() == Material.CHEST){
 
             }
->>>>>>> 183fc7f00b043d47e140a039e5188239e59d692d
     }
 
 
