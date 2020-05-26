@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -99,12 +100,12 @@ public class EndlessWorld implements Listener {
         }
     }
 
-    @EventHandler
+    /*@EventHandler
     public void onBlockIgnite(BlockIgniteEvent e){
         if(e.getBlock().getWorld().getName().equals(this.worldName)){
             e.setCancelled(true);
         }
-    }
+    }*/
 
     @EventHandler
     public void onEntityExplode(EntityExplodeEvent e) {
@@ -112,6 +113,13 @@ public class EndlessWorld implements Listener {
             e.setCancelled(true);
         }
         if (e.getEntity() instanceof Creeper) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onBlockBurn(BlockBurnEvent e){
+        if(e.getBlock().getWorld().getName().equals(this.worldName)){
             e.setCancelled(true);
         }
     }
