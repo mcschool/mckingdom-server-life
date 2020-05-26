@@ -25,7 +25,7 @@ public class FishingWorld implements Listener{
     public void onPlayerWorldChangedEvent(PlayerChangedWorldEvent event){
         Player player = event.getPlayer();
         if (!player.getWorld().getName().equals(this.worldname)) return;
-        Location location = new Location(player.getWorld(),1017,4,-1828);
+        Location location = new Location(player.getWorld(),-1017,4,-1828);
         player.teleport(location);
         player.sendTitle("みんなで釣りゲーム", "",40,60,40);
         player.setGameMode(GameMode.ADVENTURE);

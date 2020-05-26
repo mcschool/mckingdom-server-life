@@ -1,9 +1,6 @@
 package me.mckd.life;
 
-import me.mckd.life.Worlds.LobbyWorld;
-import me.mckd.life.Worlds.EndlessWorld;
-import me.mckd.life.Worlds.Monster;
-import me.mckd.life.Worlds.NetherWorld;
+import me.mckd.life.Worlds.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Life extends JavaPlugin {
@@ -18,6 +15,7 @@ public final class Life extends JavaPlugin {
         new EndlessWorld(this);
         new Monster(this);
         new NetherWorld(this);
+        new FishingWorld(this);
     }
 
     @Override
