@@ -28,12 +28,16 @@ public class SidebarService {
         Scoreboard board = manager.getNewScoreboard();
         Objective obj = board.registerNewObjective("a", "b");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        obj.setDisplayName("生活");
+        obj.setDisplayName("★☆★　　生活　　★☆★");
 
-        Score s10 = obj.getScore("職業");
+        Score s10 = obj.getScore("職業:　　　ホームレス");
         s10.setScore(10);
+        Score s9 = obj.getScore("お金:　　　" + currentMoney);
+        s9.setScore(9);
+        Score s8 = obj.getScore("Kill:　　　" + currentKilledMonster);
+        s8.setScore(8);
 
-//        Objective obj = board.registerNewObjective("a", "b");
+        //        Objective obj = board.registerNewObjective("a", "b");
 //        obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 //        obj.setDisplayName(player.getDisplayName());
 //
