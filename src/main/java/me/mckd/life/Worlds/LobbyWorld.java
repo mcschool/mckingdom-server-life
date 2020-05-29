@@ -172,9 +172,21 @@ public class LobbyWorld implements Listener {
                 inv.clear();
                 inv.setItem(0, setItem(Material.WOOD, "160円", 32));
                 inv.setItem(1, setItem(Material.LOG, "320円", 16));
-                inv.setItem(2, setItem(Material.DIAMOND, "1500円", 1));
+                inv.setItem(2, setItem(Material.DIAMOND, "2500円", 1));
                 inv.setItem(3, setItem(Material.APPLE, "100円", 1));
                 inv.setItem(4, setItem(Material.CHEST, "80円", 1));
+                inv.setItem(5, setItem(Material.CLAY, "320円", 16));
+                inv.setItem(6, setItem(Material.IRON_INGOT, "200円", 1));
+                inv.setItem(7, setItem(Material.GOLDEN_APPLE, "1250円", 1));
+                inv.setItem(8, setItem(Material.BREAD, "300円", 10));
+
+                inv.setItem(9, setItem(Material.RAILS, "320円", 16));
+                inv.setItem(10, setItem(Material.POWERED_RAIL, "640円", 4));
+
+                inv.setItem(18, setItem(Material.IRON_BOOTS, "800円", 1));
+                inv.setItem(19, setItem(Material.IRON_HELMET, "1000円", 1));
+                inv.setItem(20, setItem(Material.IRON_CHESTPLATE, "1600円", 1));
+                inv.setItem(21, setItem(Material.IRON_LEGGINGS, "1400円", 1));
                 player.openInventory(inv);
             }
         }.runTaskLater(this.plugin, 20);
