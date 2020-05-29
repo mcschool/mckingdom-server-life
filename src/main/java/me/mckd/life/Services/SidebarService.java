@@ -30,6 +30,8 @@ public class SidebarService {
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
         obj.setDisplayName("★☆★  生活  ★☆★");
 
+        Score s11 = obj.getScore(" ");
+        s11.setScore(11);
         Score s10 = obj.getScore("職業:  ホームレス");
         s10.setScore(10);
         Score s9 = obj.getScore("お金:  " + currentMoney);
