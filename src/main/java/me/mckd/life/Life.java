@@ -1,6 +1,7 @@
 package me.mckd.life;
 
 import me.mckd.life.Worlds.*;
+import me.mckd.life.Worlds.EndlessWorld.EndlessWorld;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Life extends JavaPlugin {
