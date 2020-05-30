@@ -19,21 +19,13 @@ public class WorldWorld implements Listener {
         this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
+    /*
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
             this.changeWorld(player);
         }
-    }
-
-    @EventHandler
-    public void onPlayerMoveEvent(PlayerMoveEvent event){
-        Player player = event.getPlayer();
-        if (!player.getWorld().getName().equals(this.worldName)){
-            return;
-        }
-        player.performCommand("mvtp endless");
     }
 
     @EventHandler
@@ -58,6 +50,16 @@ public class WorldWorld implements Listener {
         if (name.equals("click me")) {
             player.performCommand("mvtp endless");
         }
+    }
+     */
+
+    @EventHandler
+    public void onPlayerMoveEvent(PlayerMoveEvent event){
+        Player player = event.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)){
+            return;
+        }
+        player.performCommand("mvtp endless");
     }
 
 }
