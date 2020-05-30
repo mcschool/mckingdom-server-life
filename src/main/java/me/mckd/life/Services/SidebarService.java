@@ -30,7 +30,7 @@ public class SidebarService {
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
         obj.setDisplayName("★☆★  生活  ★☆★");
 
-        Score s11 = obj.getScore(" ");
+        Score s11 = obj.getScore("-");
         s11.setScore(11);
         Score s10 = obj.getScore("職業:  ホームレス");
         s10.setScore(10);
@@ -40,7 +40,7 @@ public class SidebarService {
         s8.setScore(8);
         Score s7 = obj.getScore("称号:  みじんこ");
         s7.setScore(7);
-        Score s6 = obj.getScore(" ");
+        Score s6 = obj.getScore("                ");
         s6.setScore(6);
 
         //        Objective obj = board.registerNewObjective("a", "b");
