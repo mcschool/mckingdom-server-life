@@ -12,18 +12,12 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBurnEvent;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-
-import java.util.Date;
 
 public class EndlessWorld implements Listener {
 
@@ -63,8 +57,16 @@ public class EndlessWorld implements Listener {
         Bukkit.getLogger().info(e.getEntity().getName());
         boolean isKilledMonster = false;
 
+        // 倒したモンスターが以下のタイプだったら
+        // フラグをオンtrueにする
         if (entity.getType() == EntityType.ZOMBIE) isKilledMonster = true;
+        if (entity.getType() == EntityType.SKELETON) isKilledMonster = true;
+        if (entity.getType() == EntityType.CREEPER) isKilledMonster = true;
+        if (entity.getType() == EntityType.SPIDER) isKilledMonster = true;
+        if (entity.getType() == EntityType.ENDERMAN) isKilledMonster = true;
+        if (entity.getType() == EntityType.WITCH) isKilledMonster = true;
 
+        // フラグがtrueだった場合、モンスターを倒した回数を増やす
         if (isKilledMonster) {
             String key = player.getUniqueId() + "-killed-monster";
 
