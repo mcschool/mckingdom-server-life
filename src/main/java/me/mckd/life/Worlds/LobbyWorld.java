@@ -147,7 +147,7 @@ public class LobbyWorld implements Listener {
             this.openMenu(player);
         }
         if (name.equals("職業選択")) {
-            Job job = new Job(plugin, player);
+            Job job = new Job(this.plugin, player);
             job.openJobSelect();
         }
         if (name.equals("給料受取")) {
@@ -180,9 +180,11 @@ public class LobbyWorld implements Listener {
     private void openItemShop(Player player) {
         player.sendTitle("ようこそ アイテムショップ へ", "ゲットしたお金でアイテムを購入できます",0, 20, 0);
         // 1秒遅延させてショップ開く。なんとなく..
+        Bukkit.getLogger().info("11111111111111111111");
         new BukkitRunnable() {
             @Override
             public void run () {
+                Bukkit.getLogger().info("222222222222222");
                 Inventory inv;
                 inv = Bukkit.createInventory(null, 45, "アイテムショップ");
                 inv.clear();
@@ -204,6 +206,7 @@ public class LobbyWorld implements Listener {
                 inv.setItem(20, setItem(Material.IRON_CHESTPLATE, "1600円", 1));
                 inv.setItem(21, setItem(Material.IRON_LEGGINGS, "1400円", 1));
                 player.openInventory(inv);
+                Bukkit.getLogger().info("33333333");
             }
         }.runTaskLater(this.plugin, 20);
     }
