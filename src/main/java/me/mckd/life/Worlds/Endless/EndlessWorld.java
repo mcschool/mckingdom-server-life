@@ -1,19 +1,16 @@
-package me.mckd.life.Worlds.EndlessWorld;
+package me.mckd.life.Worlds.Endless;
 
 import me.mckd.life.Life;
 import me.mckd.life.Services.SidebarService;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -85,6 +82,10 @@ public class EndlessWorld implements Listener {
         }
     }
 
+    /**
+     * ブロック壊したとき
+     * @param e
+     */
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
         Player player = e.getPlayer();

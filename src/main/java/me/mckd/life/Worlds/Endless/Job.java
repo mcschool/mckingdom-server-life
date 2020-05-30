@@ -1,4 +1,4 @@
-package me.mckd.life.Worlds.EndlessWorld;
+package me.mckd.life.Worlds.Endless;
 
 import me.mckd.life.Life;
 import me.mckd.life.Services.SidebarService;

@@ -1,8 +1,8 @@
-package me.mckd.life.Worlds;
+package me.mckd.life.Worlds.Lobby;
 
 import me.mckd.life.Life;
 import me.mckd.life.Services.SidebarService;
-import me.mckd.life.Worlds.EndlessWorld.Job;
+import me.mckd.life.Worlds.Endless.Job;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -146,14 +146,14 @@ public class LobbyWorld implements Listener {
         if (name.equals("Menu")) {
             this.openMenu(player);
         }
-        if (name.equals("職業選択")) {
-            Job job = new Job(this.plugin, player);
-            job.openJobSelect();
-        }
-        if (name.equals("給料受取")) {
-            Job job = new Job(this.plugin, player);
-            job.receiveSalary();
-        }
+//        if (name.equals("職業選択")) {
+//            Job job = new Job(this.plugin, player);
+//            job.openJobSelect();
+//        }
+//        if (name.equals("給料受取")) {
+//            Job job = new Job(this.plugin, player);
+//            job.receiveSalary();
+//        }
         if (name.equals("Fishing")){
             player.performCommand("mvtp fishing");
         }
