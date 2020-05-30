@@ -95,4 +95,19 @@ public class Job {
         return itemStack;
     }
 
+    public static void doWork(Life plugin, Player player, String workType) {
+        FileConfiguration c = plugin.getConfig();
+        String key = player.getUniqueId() + "-job-type";
+        String jobType = c.getString(key);
+
+        String workCountKey = player.getUniqueId() + "-job-work-count";
+        int workCount = c.getInt(workCountKey, 0);
+        if (workType.equals("killedEntity") && jobType.equals("警備員")) {
+            c.set(workCountKey, workCount + 1);
+        }
+        if (workType.equals("breakWood") && jobType.equals("木こり")) {
+            c.set(workCountKey, workCount + 1);
+        }
+        plugin.saveConfig();
+    }
 }

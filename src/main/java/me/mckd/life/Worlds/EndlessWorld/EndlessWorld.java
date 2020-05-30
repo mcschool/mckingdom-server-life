@@ -11,6 +11,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
@@ -76,9 +77,21 @@ public class EndlessWorld implements Listener {
             c.set(key, newKilledMonster);
             this.plugin.saveConfig();
 
+            // 仕事
+            Job.doWork(this.plugin, player, "killedEntity");
+
             SidebarService sidebarService = new SidebarService(this.plugin, player);
             sidebarService.show();
         }
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent e) {
+        Player player = e.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        Job.doWork(this.plugin, player, "breakWool");
     }
 
     @EventHandler
@@ -96,26 +109,17 @@ public class EndlessWorld implements Listener {
         }
     }
 
-
     /**
      * ブロックが燃え広がる時
      * 放火防止
      * @param e
      */
-
     @EventHandler
     public void onBlockSpread(BlockSpreadEvent e) {
         if(e.getBlock().getWorld().getName().equals(this.worldName)){
             e.setCancelled(true);
         }
     }
-
-    /*@EventHandler
-    public void onBlockIgnite(BlockIgniteEvent e){
-        if(e.getBlock().getWorld().getName().equals(this.worldName)){
-            e.setCancelled(true);
-        }
-    }*/
 
     @EventHandler
     public void onEntityExplode(EntityExplodeEvent e) {
@@ -133,13 +137,4 @@ public class EndlessWorld implements Listener {
             e.setCancelled(true);
         }
     }
-    @EventHandler
-    public void BlockPlaceEvent (BlockPlaceEvent event){
-            Block block = event.getBlock();
-            if (block.getType() == Material.CHEST){
-
-            }
-    }
-
-
 }
