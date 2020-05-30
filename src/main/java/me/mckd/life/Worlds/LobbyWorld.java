@@ -150,6 +150,9 @@ public class LobbyWorld implements Listener {
         if (name.equals("Menu")) {
             this.openMenu(player);
         }
+        if (name.equals("Fishing")){
+            player.performCommand("mvtp fishing");
+        }
     }
 
     /**
