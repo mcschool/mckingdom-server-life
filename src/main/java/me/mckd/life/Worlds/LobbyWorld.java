@@ -104,6 +104,7 @@ public class LobbyWorld implements Listener {
         SidebarService sidebarService = new SidebarService(this.plugin, player);
         sidebarService.show();
 
+        // 配列のstringを用意して一気にチャットにメッセージ送る
         String[] lines = {
                 "",
                 "-- お知らせ --",
