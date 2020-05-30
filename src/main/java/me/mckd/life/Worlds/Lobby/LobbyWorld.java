@@ -146,10 +146,10 @@ public class LobbyWorld implements Listener {
         if (name.equals("Menu")) {
             this.openMenu(player);
         }
-//        if (name.equals("職業選択")) {
-//            Job job = new Job(this.plugin, player);
-//            job.openJobSelect();
-//        }
+        if (name.equals("職業選択")) {
+            Job job = new Job(this.plugin, player);
+            job.openJobSelect();
+        }
 //        if (name.equals("給料受取")) {
 //            Job job = new Job(this.plugin, player);
 //            job.receiveSalary();
