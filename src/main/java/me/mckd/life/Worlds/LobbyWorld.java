@@ -105,9 +105,12 @@ public class LobbyWorld implements Listener {
         sidebarService.show();
 
         String[] lines = {
+                "",
                 "-- お知らせ --",
-                "5/30(土) 職業欄が追加されました",
+                "5/30(土) 職業欄が追加されました(そのうち職業選択ができるようになるよ)",
                 "5/30(土) アイテムショップのラインナップが追加されました",
+                "",
+                ""
         };
         player.sendMessage(lines);
     }

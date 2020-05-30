@@ -23,7 +23,7 @@ public class WorldWorld implements Listener {
             return;
         }
         String name = e.getRightClicked().getName();
-        if (name.equals("生活ワールド")) {
+        if (name.equals("click me")) {
             player.performCommand("mvtp endless");
         }
     }
