@@ -34,10 +34,14 @@ public class SidebarService {
         s11.setScore(11);
         Score s10 = obj.getScore("職業:  ホームレス");
         s10.setScore(10);
-        Score s9 = obj.getScore("お金:  " + currentMoney);
+        Score s9 = obj.getScore("お金:  " + currentMoney + "円");
         s9.setScore(9);
-        Score s8 = obj.getScore("Kill:  " + currentKilledMonster);
+        Score s8 = obj.getScore("敵倒:  " + currentKilledMonster + "kills!");
         s8.setScore(8);
+        Score s7 = obj.getScore("称号:  みじんこ");
+        s7.setScore(7);
+        Score s6 = obj.getScore(" ");
+        s6.setScore(6);
 
         //        Objective obj = board.registerNewObjective("a", "b");
 //        obj.setDisplaySlot(DisplaySlot.SIDEBAR);
