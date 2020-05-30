@@ -91,11 +91,17 @@ public class FishingWorld implements Listener{
 
 
     public void openItemShop(Player player){
-        player.sendTitle("ようこそアイテムショップへ","釣りに必要なアイテムを購入しましょう",0,20,0);
-        Inventory inventory;
-        inventory = Bukkit.createInventory(null, 45, "アイテムショップ");
-        inventory.clear();
-        inventory.setItem(2, setItem(Material.FISHING_ROD, "200円",1));
+        new BukkitRunnable(){
+            @Override
+            public void run () {
+                player.sendTitle("ようこそアイテムショップへ","釣りに必要なアイテムを購入しましょう",0,20,0);
+                Inventory inventory;
+                inventory = Bukkit.createInventory(null, 45, "アイテムショップ");
+                inventory.clear();
+                inventory.setItem(2, setItem(Material.FISHING_ROD, "200円",1));
+                player.openInventory(inventory);
+            }
+        }.runTaskLater(this.plugin, 20);
     }
 
     private ItemStack setItem(Material material, String name, int count){
@@ -152,6 +158,11 @@ public class FishingWorld implements Listener{
         }
     }
 
+    /**
+     *
+     * @param player
+     * @param inv
+     */
     public void changeMoney(Player player, Inventory inv) {
         int price = 0;
         List<String> m = new ArrayList<String>();
