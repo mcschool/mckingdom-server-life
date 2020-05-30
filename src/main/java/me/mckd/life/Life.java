@@ -17,6 +17,7 @@ public final class Life extends JavaPlugin {
         new Monster(this);
         new NetherWorld(this);
         new FishingWorld(this);
+        new WorldWorld(this);
     }
 
     @Override

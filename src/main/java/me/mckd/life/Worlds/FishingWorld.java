@@ -75,6 +75,9 @@ public class FishingWorld implements Listener{
         if (name.equals("ItemShop")){
             this.openItemShop(player);
         }
+        if (name.equals("lobby")){
+            player.performCommand("mvtp lobby");
+        }
     }
 
     public void openCashOffice(Player player) {

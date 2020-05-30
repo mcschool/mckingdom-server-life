@@ -15,13 +15,11 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -31,7 +29,7 @@ import java.util.List;
 public class LobbyWorld implements Listener {
 
     private Life plugin;
-    public String worldName = "lobby";
+    private String worldName = "lobby";
 
 
     public LobbyWorld(Life plugin) {
@@ -42,7 +40,6 @@ public class LobbyWorld implements Listener {
 
     @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent event){
-        Player player = event.getPlayer();
         this.changeWorld(event.getPlayer());
     }
     
@@ -61,7 +58,6 @@ public class LobbyWorld implements Listener {
 
     /**
      * ブロックを壊せないように
-     * @param e
      */
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
@@ -77,7 +73,6 @@ public class LobbyWorld implements Listener {
     /**
      * ブロックを置けないように
      * ロビーはアドベンチャーだけど念の為
-     * @param e
      */
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent e) {
@@ -92,9 +87,8 @@ public class LobbyWorld implements Listener {
 
     /**
      * ワールドに移動してきたときの処理
-     * @param player
      */
-    public void changeWorld(Player player) {
+    private void changeWorld(Player player) {
         player.performCommand("mvtp lobby");
         Location location = new Location(Bukkit.getWorld("lobby"), 399, 7, 289);
         player.teleport(location);
@@ -120,7 +114,6 @@ public class LobbyWorld implements Listener {
     /**
      * 空腹度を減らさない
      * フードレベルが変化した時に呼ばれるイベント
-     * @param e
      */
     @EventHandler
     public void onFoodLevelChangeEvent(FoodLevelChangeEvent e){
@@ -159,13 +152,15 @@ public class LobbyWorld implements Listener {
             Job job = new Job(this.plugin, player);
             job.receiveSalary();
         }
+        if (name.equals("Fishing")){
+            player.performCommand("mvtp fishing");
+        }
     }
 
     /**
      * サーバー間の移動をするためmvtpではダメで少し特殊な方法
-     * @param player
      */
-    public void gotoMainLobby(Player player) {
+    private void gotoMainLobby(Player player) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
@@ -179,9 +174,8 @@ public class LobbyWorld implements Listener {
 
     /**
      * アイテムショップを右クリックしたときにショップ開く
-     * @param player
      */
-    public void openItemShop(Player player) {
+    private void openItemShop(Player player) {
         player.sendTitle("ようこそ アイテムショップ へ", "ゲットしたお金でアイテムを購入できます",0, 20, 0);
         // 1秒遅延させてショップ開く。なんとなく..
         new BukkitRunnable() {
@@ -215,7 +209,7 @@ public class LobbyWorld implements Listener {
     /**
      * Menuをクリックした場合インベントリを開く
      */
-    public void openMenu(Player player){
+    private void openMenu(Player player){
         player.sendTitle("メニュー", "プレーヤーメニュー",0, 20, 0);
         new BukkitRunnable() {
             @Override
@@ -240,10 +234,6 @@ public class LobbyWorld implements Listener {
 
     /**
      * アイテムを生成するのに手順ふむの面倒なので関数化
-     * @param material
-     * @param name
-     * @param count
-     * @return
      */
     private ItemStack setItem(Material material, String name, int count) {
         ItemStack itemStack = new ItemStack(material, count);
@@ -255,9 +245,8 @@ public class LobbyWorld implements Listener {
 
     /**
      * 換金するインベントリを開く
-     * @param player
      */
-    public void openCashOffice(Player player) {
+    private void openCashOffice(Player player) {
         player.sendTitle("ようこそ 換金所 へ", "ゲットしたアイテムをお金に変えることができます",0, 20, 0);
         new BukkitRunnable() {
             @Override
@@ -273,7 +262,6 @@ public class LobbyWorld implements Listener {
 
     /**
      * 開いているショップのインベントリをクリックしたとき
-     * @param e
      */
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
@@ -328,7 +316,6 @@ public class LobbyWorld implements Listener {
 
     /**
      * インベントリを閉じるときに呼ばれる
-     * @param e
      */
     @EventHandler
     public void onInventoryCloseEvent(InventoryCloseEvent e) {
@@ -346,10 +333,8 @@ public class LobbyWorld implements Listener {
 
     /**
      * 換金処理
-     * @param player
-     * @param inv
      */
-    public void changeMoney(Player player, Inventory inv) {
+    private void changeMoney(Player player, Inventory inv) {
         int price = 0;
         List<String> m = new ArrayList<String>();
         for (int i = 0; i < inv.getSize(); i++) {
@@ -388,10 +373,8 @@ public class LobbyWorld implements Listener {
     /**
      * アイテムの売価
      * あとで別クラスに分けた方が良さげ
-     * @param item
-     * @return
      */
-    public int getItemPrice(ItemStack item) {
+    private int getItemPrice(ItemStack item) {
         Material type = item.getType();
         if (type == Material.DIAMOND) return item.getAmount() * 1000;
         if (type == Material.EMERALD) return item.getAmount() * 1500;
@@ -401,7 +384,7 @@ public class LobbyWorld implements Listener {
         if (type == Material.COAL) return item.getAmount() * 10;
         if (type == Material.GLASS) return item.getAmount() * 10;
 
-        return item.getAmount() * 1;
+        return item.getAmount();
     }
 }
 
