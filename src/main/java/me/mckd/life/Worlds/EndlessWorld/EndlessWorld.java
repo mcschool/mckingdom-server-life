@@ -43,12 +43,6 @@ public class EndlessWorld implements Listener {
             return;
         }
         player.setGameMode(GameMode.SURVIVAL);
-        String[] lines = {
-                "-- お知らせ --",
-                "5/30(土) 職業欄が追加されました",
-                "5/30(土) アイテムショップのラインナップが追加されました",
-        };
-        player.sendMessage(lines);
     }
 
     @EventHandler

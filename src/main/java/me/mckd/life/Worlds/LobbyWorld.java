@@ -103,6 +103,13 @@ public class LobbyWorld implements Listener {
 
         SidebarService sidebarService = new SidebarService(this.plugin, player);
         sidebarService.show();
+
+        String[] lines = {
+                "-- お知らせ --",
+                "5/30(土) 職業欄が追加されました",
+                "5/30(土) アイテムショップのラインナップが追加されました",
+        };
+        player.sendMessage(lines);
     }
 
     /**
