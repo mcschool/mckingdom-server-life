@@ -34,7 +34,7 @@ public class Job {
                 inv = Bukkit.createInventory(null, 18, "職業選択");
                 inv.clear();
                 inv.setItem(0, setItem(Material.IRON_SWORD, "警備員", 1));
-                inv.setItem(1, setItem(Material.WOOD_AXE, "木こり", 1));
+                // inv.setItem(1, setItem(Material.WOOD_AXE, "木こり", 1));
                 player.openInventory(inv);
             }
         }.runTaskLater(this.plugin, 20);
@@ -58,7 +58,7 @@ public class Job {
         String message = "";
         if (itemName.equals("警備員")) {
             c.set(key, "警備員");
-            message = "街をモンスターから守ってください！";
+            message = "街をモンスターから守るお仕事です！";
         }
         else if (itemName.equals("木こり")) {
             c.set(key, "木こり");
