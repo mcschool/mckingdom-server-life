@@ -91,10 +91,10 @@ public class FishingWorld implements Listener{
 
 
     public void openItemShop(Player player){
+        player.sendTitle("ようこそアイテムショップへ","釣りに必要なアイテムを購入しましょう",0,20,0);
         new BukkitRunnable(){
             @Override
             public void run () {
-                player.sendTitle("ようこそアイテムショップへ","釣りに必要なアイテムを購入しましょう",0,20,0);
                 Inventory inventory;
                 inventory = Bukkit.createInventory(null, 45, "アイテムショップ");
                 inventory.clear();
