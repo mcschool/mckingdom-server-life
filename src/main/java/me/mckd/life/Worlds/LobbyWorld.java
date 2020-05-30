@@ -2,6 +2,7 @@ package me.mckd.life.Worlds;
 
 import me.mckd.life.Life;
 import me.mckd.life.Services.SidebarService;
+import me.mckd.life.Worlds.EndlessWorld.Job;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -95,7 +96,7 @@ public class LobbyWorld implements Listener {
      */
     public void changeWorld(Player player) {
         player.performCommand("mvtp lobby");
-        Location location = new Location(Bukkit.getWorld("lobby"), 387, 10, 393);
+        Location location = new Location(Bukkit.getWorld("lobby"), 399, 7, 289);
         player.teleport(location);
         player.setGameMode(GameMode.ADVENTURE);
 
@@ -149,6 +150,14 @@ public class LobbyWorld implements Listener {
         }
         if (name.equals("Menu")) {
             this.openMenu(player);
+        }
+        if (name.equals("職業選択")) {
+            Job job = new Job(plugin, player);
+            job.openJobSelect();
+        }
+        if (name.equals("給料受取")) {
+            Job job = new Job(this.plugin, player);
+            job.receiveSalary();
         }
     }
 
@@ -309,6 +318,11 @@ public class LobbyWorld implements Listener {
             if(e.getCurrentItem().getType() == (Material.DIAMOND)){
                 player.sendMessage("You clicked a diamond in menu box");
             }
+        }
+
+        if (invName.equals("職業選択")) {
+            Job job = new Job(this.plugin, player);
+            job.clickJobInventory(e);
         }
     }
 

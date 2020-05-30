@@ -17,12 +17,23 @@ public class SidebarService {
     }
 
     public void show() {
-        String moneyKey = player.getUniqueId() + "-money";
 
-        String killedMonsterKey = player.getUniqueId() + "-killed-monster";
         FileConfiguration c = this.plugin.getConfig();
+
+        // お金
+        String moneyKey = player.getUniqueId() + "-money";
         int currentMoney = c.getInt(moneyKey);
+
+        // 敵倒
+        String killedMonsterKey = player.getUniqueId() + "-killed-monster";
         int currentKilledMonster = c.getInt(killedMonsterKey);
+
+        // 職業
+        String jobKey = player.getUniqueId() + "-job-type";
+        String currentJob = c.getString(jobKey);
+        if (currentJob.equals("")) {
+            currentJob = "ホームレス";
+        }
 
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getNewScoreboard();
@@ -32,7 +43,7 @@ public class SidebarService {
 
         Score s11 = obj.getScore("-");
         s11.setScore(11);
-        Score s10 = obj.getScore("職業:  ホームレス");
+        Score s10 = obj.getScore("職業:  " + currentJob);
         s10.setScore(10);
         Score s9 = obj.getScore("お金:  " + currentMoney + "円");
         s9.setScore(9);
