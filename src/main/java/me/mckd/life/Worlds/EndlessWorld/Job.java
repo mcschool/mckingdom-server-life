@@ -73,7 +73,7 @@ public class Job {
         sidebarService.show();
         // インベントリ閉じてメッセージ
         this.player.closeInventory();
-        this.player.sendTitle(itemName, message, 0, 20, 0);
+        this.player.sendTitle(itemName, message, 20, 20, 20);
     }
 
     public void receiveSalary() {
