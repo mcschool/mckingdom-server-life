@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 public class WorldWorld implements Listener {
 
@@ -24,6 +25,15 @@ public class WorldWorld implements Listener {
         if (player.getWorld().getName().equals(this.worldName)) {
             this.changeWorld(player);
         }
+    }
+
+    @EventHandler
+    public void onPlayerMoveEvent(PlayerMoveEvent event){
+        Player player = event.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)){
+            return;
+        }
+        player.performCommand("mvtp endless");
     }
 
     @EventHandler
