@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -158,6 +159,21 @@ public class FishingWorld implements Listener{
         }
     }
 
+    @EventHandler
+    public void onInventoryCloseEvent(InventoryCloseEvent e) {
+        World world = e.getPlayer().getWorld();
+        if (!world.getName().equals(this.worldname)) {
+            return;
+        }
+        Player player = (Player) e.getPlayer();
+        Inventory inv = e.getInventory();
+        String invName = inv.getName();
+        if (invName.equals("換金所")) {
+            this.changeMoney(player, inv);
+        }
+    }
+
+
     /**
      *
      * @param player
@@ -199,6 +215,11 @@ public class FishingWorld implements Listener{
         }
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     public int getItemPrice(ItemStack item) {
         Material type = item.getType();
         if (type == Material.RAW_FISH) return item.getAmount() * 100;
