@@ -150,10 +150,10 @@ public class LobbyWorld implements Listener {
             Job job = new Job(this.plugin, player);
             job.openJobSelect();
         }
-//        if (name.equals("給料受取")) {
-//            Job job = new Job(this.plugin, player);
-//            job.receiveSalary();
-//        }
+        if (name.equals("給料受取")) {
+            Job job = new Job(this.plugin, player);
+            job.receiveSalary();
+        }
         if (name.equals("Fishing")){
             player.performCommand("mvtp fishing");
         }
