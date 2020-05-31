@@ -1,6 +1,7 @@
 package me.mckd.life.Worlds.Endless;
 
 import me.mckd.life.Life;
+import me.mckd.life.Services.JobService;
 import me.mckd.life.Services.SidebarService;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -75,7 +76,7 @@ public class EndlessWorld implements Listener {
             this.plugin.saveConfig();
 
             // 仕事
-            Job.doWork(this.plugin, player, "killedEntity");
+            JobService.doWork(this.plugin, player, "killedEntity");
 
             SidebarService sidebarService = new SidebarService(this.plugin, player);
             sidebarService.show();
@@ -92,7 +93,7 @@ public class EndlessWorld implements Listener {
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
-        Job.doWork(this.plugin, player, "breakWool");
+        JobService.doWork(this.plugin, player, "breakWool");
     }
 
     @EventHandler

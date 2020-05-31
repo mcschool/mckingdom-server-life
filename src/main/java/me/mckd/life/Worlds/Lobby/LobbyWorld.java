@@ -2,7 +2,7 @@ package me.mckd.life.Worlds.Lobby;
 
 import me.mckd.life.Life;
 import me.mckd.life.Services.SidebarService;
-import me.mckd.life.Worlds.Endless.Job;
+import me.mckd.life.Services.JobService;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -147,12 +147,12 @@ public class LobbyWorld implements Listener {
             this.openMenu(player);
         }
         if (name.equals("職業選択")) {
-            Job job = new Job(this.plugin, player);
-            job.openJobSelect();
+            JobService jobService = new JobService(this.plugin, player);
+            jobService.openJobSelect();
         }
         if (name.equals("給料受取")) {
-            Job job = new Job(this.plugin, player);
-            job.receiveSalary();
+            JobService jobService = new JobService(this.plugin, player);
+            jobService.openReceiveSalary();
         }
         if (name.equals("Fishing")){
             player.performCommand("mvtp fishing");
@@ -314,8 +314,8 @@ public class LobbyWorld implements Listener {
         }
 
         if (invName.equals("職業選択")) {
-            Job job = new Job(this.plugin, player);
-            job.clickJobInventory(e);
+            JobService jobService = new JobService(this.plugin, player);
+            jobService.clickJobInventory(e);
         }
     }
 

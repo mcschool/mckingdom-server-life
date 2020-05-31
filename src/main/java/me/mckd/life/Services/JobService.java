@@ -1,4 +1,4 @@
-package me.mckd.life.Worlds.Endless;
+package me.mckd.life.Services;
 
 import me.mckd.life.Life;
 import me.mckd.life.Services.SidebarService;
@@ -12,12 +12,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class Job {
+public class JobService {
 
     private Life plugin;
     private Player player;
 
-    public Job(Life plugin, Player player) {
+    public JobService(Life plugin, Player player) {
         this.plugin = plugin;
         this.player = player;
     }
@@ -76,7 +76,7 @@ public class Job {
         this.player.sendTitle(itemName, message, 20, 20, 20);
     }
 
-    public void receiveSalary() {
+    public void openReceiveSalary() {
         this.player.sendMessage("すみません... 準備中...");
     }
 
