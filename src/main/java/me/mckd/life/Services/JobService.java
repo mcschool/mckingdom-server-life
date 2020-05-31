@@ -76,8 +76,56 @@ public class JobService {
         this.player.sendTitle(itemName, message, 20, 20, 20);
     }
 
-    public void openReceiveSalary() {
-        this.player.sendMessage("すみません... 準備中...");
+    /**
+     * 給料受け取りのNpcクリック
+     */
+    public void clickReceiveSalary() {
+        Player player = this.player;
+        player.sendTitle("お給料計算中...", "", 20, 20, 20);
+        FileConfiguration c = this.plugin.getConfig();
+        Life plugin = this.plugin;
+        new BukkitRunnable() {
+            @Override
+            public void run () {
+                String key = player.getUniqueId() + "-job-type";
+                String jobType = c.getString(key, "");
+                String workCountKey = player.getUniqueId() + "-job-work-count";
+                int workCount = c.getInt(workCountKey, 0); // お仕事完了回数
+                int unitPrice = getWorkSalary(jobType); // お仕事の単価
+                int salary = unitPrice * workCount; // 単価 x 完了 = お給料
+
+                // 設定ファイルに書き込む
+                MoneyService moneyService = new MoneyService(plugin, player);
+                moneyService.addMoney(salary);
+
+                // サイドバー更新
+                SidebarService sidebarService = new SidebarService(plugin, player);
+                sidebarService.show();
+
+                // メッセージ送る
+                player.sendTitle(workCount + "回のお仕事", salary + "円のお給料をもらいました", 0, 40, 20);
+                String[] messages = {
+                        " ",
+                        "□ 給料明細",
+                        "単価: " + unitPrice + "円",
+                        "完了数:" + workCount + "回",
+                        "--",
+                        "合計:" + salary + "円",
+                        " "
+                };
+                player.sendMessage(messages);
+            }
+        }.runTaskLater(this.plugin, 60);
+    }
+
+    /**
+     * お給料の単価を取得
+     */
+    private int getWorkSalary (String jobType) {
+        if (jobType == "警備員") {
+            return 50;
+        }
+        return 0;
     }
 
     /**
