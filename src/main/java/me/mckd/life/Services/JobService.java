@@ -122,7 +122,7 @@ public class JobService {
      * お給料の単価を取得
      */
     private int getWorkSalary (String jobType) {
-        if (jobType == "警備員") {
+        if (jobType.equals("警備員")) {
             return 50;
         }
         return 0;
