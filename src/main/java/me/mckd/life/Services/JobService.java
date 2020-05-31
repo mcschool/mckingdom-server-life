@@ -65,6 +65,10 @@ public class JobService {
             message = "たくさんの原木を集めてください！";
         }
 
+        // 仕事カウントをリセット
+        String workCountKey = player.getUniqueId() + "-job-work-count";
+        c.set(workCountKey, 0);
+
         // セットした設定を保存
         this.plugin.saveConfig();
 
@@ -97,6 +101,9 @@ public class JobService {
                 // 設定ファイルに書き込む
                 MoneyService moneyService = new MoneyService(plugin, player);
                 moneyService.addMoney(salary);
+
+                // 仕事カウントを0にする
+                c.set(workCountKey, 0);
 
                 // サイドバー更新
                 SidebarService sidebarService = new SidebarService(plugin, player);
