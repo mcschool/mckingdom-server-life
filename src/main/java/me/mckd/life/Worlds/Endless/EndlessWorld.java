@@ -5,6 +5,7 @@ import me.mckd.life.Services.JobService;
 import me.mckd.life.Services.SidebarService;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
@@ -147,7 +148,17 @@ public class EndlessWorld implements Listener {
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
+        Material material = e.getCurrentItem().getType();
+        // パンを作成
+        if (material == Material.BREAD) {
+            JobService.doWork(this.plugin, player, "createBread");
+        }
+        // ケーキを作成
+        if (material == Material.CAKE) {
+            JobService.doWork(this.plugin, player, "createCake");
+        }
         String name = e.getCurrentItem().getType().toString();
         player.sendMessage(name);
+
     }
 }

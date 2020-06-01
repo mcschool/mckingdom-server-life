@@ -198,6 +198,9 @@ public class LobbyWorld implements Listener {
 
                 inv.setItem(9, setItem(Material.RAILS, "320円", 16));
                 inv.setItem(10, setItem(Material.POWERED_RAIL, "640円", 4));
+                inv.setItem(11, setItem(Material.BOOK, "570円", 1));
+                inv.setItem(12, setItem(Material.EMERALD, "10000円", 1));
+                inv.setItem(13, setItem(Material.BLAZE_ROD, "1000円", 1));
 
                 inv.setItem(18, setItem(Material.IRON_BOOTS, "800円", 1));
                 inv.setItem(19, setItem(Material.IRON_HELMET, "1000円", 1));

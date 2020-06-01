@@ -35,7 +35,8 @@ public class JobService {
                 inv.clear();
                 inv.setItem(0, setItem(Material.WOOD_BUTTON, "ホームレス", 1));
                 inv.setItem(1, setItem(Material.IRON_SWORD, "警備員", 1));
-                // inv.setItem(1, setItem(Material.WOOD_AXE, "木こり", 1));
+                inv.setItem(2, setItem(Material.BREAD, "パン屋さん", 1));
+                inv.setItem(3, setItem(Material.BREAD, "ケーキ屋さん", 1));
                 player.openInventory(inv);
             }
         }.runTaskLater(this.plugin, 20);
@@ -65,9 +66,17 @@ public class JobService {
             c.set(key, "警備員");
             message = "街をモンスターから守るお仕事です！";
         }
-        else if (itemName.equals("木こり")) {
+        if (itemName.equals("木こり")) {
             c.set(key, "木こり");
             message = "たくさんの原木を集めてください！";
+        }
+        if (itemName.equals("パン屋さん")) {
+            c.set(key, "パン屋さん");
+            message = "パンをたくさん作ってみんなに分けてね！";
+        }
+        if (itemName.equals("ケーキ屋さん")) {
+            c.set(key, "ケーキ屋さん");
+            message = "美味しいケーキをたくさん作ってください！";
         }
 
         // 仕事カウントをリセット
@@ -134,9 +143,9 @@ public class JobService {
      * お給料の単価を取得
      */
     private int getWorkSalary (String jobType) {
-        if (jobType.equals("警備員")) {
-            return 50;
-        }
+        if (jobType.equals("警備員")) return 50;
+        if (jobType.equals("パン屋さん")) return 30;
+        if (jobType.equals("ケーキ屋さん")) return 150;
         return 0;
     }
 
@@ -166,6 +175,12 @@ public class JobService {
             c.set(workCountKey, workCount + 1);
         }
         if (workType.equals("breakWood") && jobType.equals("木こり")) {
+            c.set(workCountKey, workCount + 1);
+        }
+        if (workType.equals("createBread") && jobType.equals("パン屋さん")) {
+            c.set(workCountKey, workCount + 1);
+        }
+        if (workType.equals("createCake") && jobType.equals("ケーキ屋さん")) {
             c.set(workCountKey, workCount + 1);
         }
         plugin.saveConfig();
