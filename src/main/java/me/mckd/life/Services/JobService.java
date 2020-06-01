@@ -33,7 +33,8 @@ public class JobService {
                 Inventory inv;
                 inv = Bukkit.createInventory(null, 18, "職業選択");
                 inv.clear();
-                inv.setItem(0, setItem(Material.IRON_SWORD, "警備員", 1));
+                inv.setItem(0, setItem(Material.WOOD_BUTTON, "ホームレス", 1));
+                inv.setItem(1, setItem(Material.IRON_SWORD, "警備員", 1));
                 // inv.setItem(1, setItem(Material.WOOD_AXE, "木こり", 1));
                 player.openInventory(inv);
             }
@@ -56,6 +57,10 @@ public class JobService {
         String key = player.getUniqueId() + "-job-type";
 
         String message = "";
+        if (itemName.equals("ホームレス")) {
+            c.set(key, "");
+            message = "ホームレスに戻りました。あなたは無職です";
+        }
         if (itemName.equals("警備員")) {
             c.set(key, "警備員");
             message = "街をモンスターから守るお仕事です！";

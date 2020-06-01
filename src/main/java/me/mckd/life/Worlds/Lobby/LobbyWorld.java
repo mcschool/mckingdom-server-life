@@ -277,7 +277,7 @@ public class LobbyWorld implements Listener {
         if (invName.equals("アイテムショップ")) {
             String key = player.getUniqueId() + "-money";
             FileConfiguration c = this.plugin.getConfig();
-            int currentMoney = c.getInt(key);
+            int currentMoney = c.getInt(key, 0);
 
             String itemName = "";
             if (e.getCurrentItem().hasItemMeta()) {
@@ -293,7 +293,7 @@ public class LobbyWorld implements Listener {
                 return;
             }
 
-            int myMoney = c.getInt(key);
+            int myMoney = c.getInt(key, 0);
             int nextMoney = myMoney - price;
             c.set(key, nextMoney);
             this.plugin.saveConfig();
@@ -351,7 +351,7 @@ public class LobbyWorld implements Listener {
             // データ保存
             String key = player.getUniqueId() + "-money";
             FileConfiguration c = this.plugin.getConfig();
-            int myMoney = c.getInt(key);
+            int myMoney = c.getInt(key, 0);
             int nextMoney = myMoney + price;
             c.set(key, nextMoney);
             this.plugin.saveConfig();

@@ -15,6 +15,7 @@ import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 
@@ -138,5 +139,15 @@ public class EndlessWorld implements Listener {
         if (e.getBlock().getWorld().getName().equals(this.worldName)) {
             e.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public void onCraftItem(CraftItemEvent e) {
+        Player player = (Player) e.getWhoClicked();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        String name = e.getCurrentItem().getType().toString();
+        player.sendMessage(name);
     }
 }
