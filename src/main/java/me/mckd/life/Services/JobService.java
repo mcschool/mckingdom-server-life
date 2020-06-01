@@ -144,7 +144,7 @@ public class JobService {
      */
     private int getWorkSalary (String jobType) {
         if (jobType.equals("警備員")) return 50;
-        if (jobType.equals("パン屋さん")) return 30;
+        if (jobType.equals("パン屋さん")) return 5;
         if (jobType.equals("ケーキ屋さん")) return 150;
         return 0;
     }
