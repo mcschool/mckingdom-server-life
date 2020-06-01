@@ -197,7 +197,7 @@ public class FishingWorld implements Listener{
             // データ保存
             String key = player.getUniqueId() + "-money";
             FileConfiguration c = this.plugin.getConfig();
-            int myMoney = c.getInt(key);
+            int myMoney = c.getInt(key, 0);
             int nextMoney = myMoney + price;
             c.set(key, nextMoney);
             this.plugin.saveConfig();

@@ -36,7 +36,7 @@ public class JobService {
                 inv.setItem(0, setItem(Material.WOOD_BUTTON, "ホームレス", 1));
                 inv.setItem(1, setItem(Material.IRON_SWORD, "警備員", 1));
                 inv.setItem(2, setItem(Material.BREAD, "パン屋さん", 1));
-                inv.setItem(3, setItem(Material.BREAD, "ケーキ屋さん", 1));
+                inv.setItem(3, setItem(Material.CAKE, "ケーキ屋さん", 1));
                 player.openInventory(inv);
             }
         }.runTaskLater(this.plugin, 20);

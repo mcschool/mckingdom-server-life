@@ -142,6 +142,10 @@ public class EndlessWorld implements Listener {
         }
     }
 
+    /**
+     * 何かをクラフトした時。とりあえず作業台しかテストしてない
+     * @param e
+     */
     @EventHandler
     public void onCraftItem(CraftItemEvent e) {
         Player player = (Player) e.getWhoClicked();
@@ -157,8 +161,5 @@ public class EndlessWorld implements Listener {
         if (material == Material.CAKE) {
             JobService.doWork(this.plugin, player, "createCake");
         }
-        String name = e.getCurrentItem().getType().toString();
-        player.sendMessage(name);
-
     }
 }
