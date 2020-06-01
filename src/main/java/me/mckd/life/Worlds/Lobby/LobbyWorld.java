@@ -99,18 +99,26 @@ public class LobbyWorld implements Listener {
         SidebarService sidebarService = new SidebarService(this.plugin, player);
         sidebarService.show();
 
-        // 配列のstringを用意して一気にチャットにメッセージ送る
-        String[] lines = {
-                "",
-                "-- お知らせ --",
-                "5/31(日) 生活鯖に釣りゲーが追加されました。魚釣って売れます。",
-                "5/31(日) 生活鯖のロビーが新しくなりました",
-                "5/30(土) 職業欄が追加されました(そのうち職業選択ができるようになるよ)",
-                "5/30(土) アイテムショップのラインナップが追加されました",
-                "",
-                ""
-        };
-        player.sendMessage(lines);
+        new BukkitRunnable() {
+            @Override
+            public void run () {
+                // 配列のstringを用意して一気にチャットにメッセージ送る
+                String[] lines = {
+                        "",
+                        "-- お知らせ --",
+                        "6/01(月) 職業にパン屋さん・ケーキ屋さんが追加されました",
+                        "6/01(月) アイテムショップのラインナップが増えました",
+                        "6/01(月) 一部バグfix",
+                        "5/31(日) 生活鯖に釣りゲーが追加されました。魚釣って売れます。",
+                        "5/31(日) 生活鯖のロビーが新しくなりました",
+                        "5/30(土) 職業欄が追加されました(そのうち職業選択ができるようになるよ)",
+                        "5/30(土) アイテムショップのラインナップが増えました",
+                        "",
+                        ""
+                };
+                player.sendMessage(lines);
+            }
+        }.runTaskLater(this.plugin, 60);
     }
 
     /**
