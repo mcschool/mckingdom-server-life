@@ -90,7 +90,7 @@ public class LobbyWorld implements Listener {
      */
     private void changeWorld(Player player) {
         player.performCommand("mvtp lobby");
-        Location location = new Location(Bukkit.getWorld("lobby"), 399, 7, 289);
+        Location location = new Location(Bukkit.getWorld("lobby"), 399, 8, 289);
         player.teleport(location);
         player.setGameMode(GameMode.ADVENTURE);
 
@@ -99,18 +99,26 @@ public class LobbyWorld implements Listener {
         SidebarService sidebarService = new SidebarService(this.plugin, player);
         sidebarService.show();
 
-        // 配列のstringを用意して一気にチャットにメッセージ送る
-        String[] lines = {
-                "",
-                "-- お知らせ --",
-                "5/31(日) 生活鯖に釣りゲーが追加されました。魚釣って売れます。",
-                "5/31(日) 生活鯖のロビーが新しくなりました",
-                "5/30(土) 職業欄が追加されました(そのうち職業選択ができるようになるよ)",
-                "5/30(土) アイテムショップのラインナップが追加されました",
-                "",
-                ""
-        };
-        player.sendMessage(lines);
+        new BukkitRunnable() {
+            @Override
+            public void run () {
+                // 配列のstringを用意して一気にチャットにメッセージ送る
+                String[] lines = {
+                        "",
+                        "-- お知らせ --",
+                        "6/01(月) 職業にパン屋さん・ケーキ屋さんが追加されました",
+                        "6/01(月) アイテムショップのラインナップが増えました",
+                        "6/01(月) 一部バグfix",
+                        "5/31(日) 生活鯖に釣りゲーが追加されました。魚釣って売れます。",
+                        "5/31(日) 生活鯖のロビーが新しくなりました",
+                        "5/30(土) 職業欄が追加されました(そのうち職業選択ができるようになるよ)",
+                        "5/30(土) アイテムショップのラインナップが増えました",
+                        "",
+                        ""
+                };
+                player.sendMessage(lines);
+            }
+        }.runTaskLater(this.plugin, 60);
     }
 
     /**
@@ -152,7 +160,7 @@ public class LobbyWorld implements Listener {
         }
         if (name.equals("給料受取")) {
             JobService jobService = new JobService(this.plugin, player);
-            jobService.openReceiveSalary();
+            jobService.clickReceiveSalary();
         }
         if (name.equals("Fishing")){
             player.performCommand("mvtp fishing");
@@ -180,11 +188,9 @@ public class LobbyWorld implements Listener {
     private void openItemShop(Player player) {
         player.sendTitle("ようこそ アイテムショップ へ", "ゲットしたお金でアイテムを購入できます",0, 20, 0);
         // 1秒遅延させてショップ開く。なんとなく..
-        Bukkit.getLogger().info("11111111111111111111");
         new BukkitRunnable() {
             @Override
             public void run () {
-                Bukkit.getLogger().info("222222222222222");
                 Inventory inv;
                 inv = Bukkit.createInventory(null, 45, "アイテムショップ");
                 inv.clear();
@@ -200,13 +206,15 @@ public class LobbyWorld implements Listener {
 
                 inv.setItem(9, setItem(Material.RAILS, "320円", 16));
                 inv.setItem(10, setItem(Material.POWERED_RAIL, "640円", 4));
+                inv.setItem(11, setItem(Material.BOOK, "570円", 1));
+                inv.setItem(12, setItem(Material.EMERALD, "10000円", 1));
+                inv.setItem(13, setItem(Material.BLAZE_ROD, "1000円", 1));
 
                 inv.setItem(18, setItem(Material.IRON_BOOTS, "800円", 1));
                 inv.setItem(19, setItem(Material.IRON_HELMET, "1000円", 1));
                 inv.setItem(20, setItem(Material.IRON_CHESTPLATE, "1600円", 1));
                 inv.setItem(21, setItem(Material.IRON_LEGGINGS, "1400円", 1));
                 player.openInventory(inv);
-                Bukkit.getLogger().info("33333333");
             }
         }.runTaskLater(this.plugin, 20);
     }
@@ -280,7 +288,7 @@ public class LobbyWorld implements Listener {
         if (invName.equals("アイテムショップ")) {
             String key = player.getUniqueId() + "-money";
             FileConfiguration c = this.plugin.getConfig();
-            int currentMoney = c.getInt(key);
+            int currentMoney = c.getInt(key, 0);
 
             String itemName = "";
             if (e.getCurrentItem().hasItemMeta()) {
@@ -296,7 +304,7 @@ public class LobbyWorld implements Listener {
                 return;
             }
 
-            int myMoney = c.getInt(key);
+            int myMoney = c.getInt(key, 0);
             int nextMoney = myMoney - price;
             c.set(key, nextMoney);
             this.plugin.saveConfig();
@@ -354,7 +362,7 @@ public class LobbyWorld implements Listener {
             // データ保存
             String key = player.getUniqueId() + "-money";
             FileConfiguration c = this.plugin.getConfig();
-            int myMoney = c.getInt(key);
+            int myMoney = c.getInt(key, 0);
             int nextMoney = myMoney + price;
             c.set(key, nextMoney);
             this.plugin.saveConfig();

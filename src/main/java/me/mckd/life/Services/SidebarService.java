@@ -22,15 +22,15 @@ public class SidebarService {
 
         // お金
         String moneyKey = player.getUniqueId() + "-money";
-        int currentMoney = c.getInt(moneyKey);
+        int currentMoney = c.getInt(moneyKey, 0);
 
         // 敵倒
         String killedMonsterKey = player.getUniqueId() + "-killed-monster";
-        int currentKilledMonster = c.getInt(killedMonsterKey);
+        int currentKilledMonster = c.getInt(killedMonsterKey, 0);
 
         // 職業
         String jobKey = player.getUniqueId() + "-job-type";
-        String currentJob = c.getString(jobKey);
+        String currentJob = c.getString(jobKey, "");
         if (currentJob.equals("")) {
             currentJob = "ホームレス";
         }

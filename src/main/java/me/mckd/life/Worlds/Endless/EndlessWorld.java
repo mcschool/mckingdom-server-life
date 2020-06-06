@@ -5,6 +5,7 @@ import me.mckd.life.Services.JobService;
 import me.mckd.life.Services.SidebarService;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
@@ -15,6 +16,7 @@ import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 
@@ -140,6 +142,27 @@ public class EndlessWorld implements Listener {
     public void onBlockBurn(BlockBurnEvent e) {
         if (e.getBlock().getWorld().getName().equals(this.worldName)) {
             e.setCancelled(true);
+        }
+    }
+
+    /**
+     * 何かをクラフトした時。とりあえず作業台しかテストしてない
+     * @param e
+     */
+    @EventHandler
+    public void onCraftItem(CraftItemEvent e) {
+        Player player = (Player) e.getWhoClicked();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        Material material = e.getCurrentItem().getType();
+        // パンを作成
+        if (material == Material.BREAD) {
+            JobService.doWork(this.plugin, player, "createBread");
+        }
+        // ケーキを作成
+        if (material == Material.CAKE) {
+            JobService.doWork(this.plugin, player, "createCake");
         }
     }
 }
