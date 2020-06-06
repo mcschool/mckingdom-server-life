@@ -109,6 +109,9 @@ public class EndlessWorld implements Listener {
         if (name.equals("Nether")){
             player.performCommand("mvtp nether");
         }
+        if (name.equals("End")){
+            player.performCommand("mvtp world_the_end");
+        }
     }
 
     /**

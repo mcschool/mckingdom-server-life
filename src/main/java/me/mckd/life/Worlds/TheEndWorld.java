@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 
 public class TheEndWorld implements Listener {
 
@@ -25,6 +26,18 @@ public class TheEndWorld implements Listener {
             return;
         }
         player.setGameMode(GameMode.SURVIVAL);
+    }
+
+    @EventHandler
+    public void onPlayerInteractEntity(PlayerInteractAtEntityEvent e) {
+        Player player = e.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        String name = e.getRightClicked().getName();
+        if (name.equals("Lobby")){
+            player.performCommand("mvtp endless");
+        }
     }
 
 }
