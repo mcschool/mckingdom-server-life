@@ -186,6 +186,9 @@ public class LobbyWorld implements Listener {
      * アイテムショップを右クリックしたときにショップ開く
      */
     private void openItemShop(Player player) {
+        if (player == null) {
+            return;
+        }
         player.sendTitle("ようこそ アイテムショップ へ", "ゲットしたお金でアイテムを購入できます",0, 20, 0);
         // 1秒遅延させてショップ開く。なんとなく..
         new BukkitRunnable() {
