@@ -19,6 +19,10 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.scoreboard.NameTagVisibility;
+
+import javax.naming.Name;
+import java.util.jar.Attributes;
 
 public class EndlessWorld implements Listener {
 
@@ -165,4 +169,6 @@ public class EndlessWorld implements Listener {
             JobService.doWork(this.plugin, player, "createCake");
         }
     }
+
+
 }

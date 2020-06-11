@@ -53,6 +53,7 @@ public class LobbyWorld implements Listener {
             player.getWorld().setPVP(false);
             String name = player.getDisplayName();
             player.setCustomName(name + " ★0");
+            player.setPlayerListName("Admin");
         }
     }
 
