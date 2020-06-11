@@ -43,7 +43,7 @@ public class LobbyWorld implements Listener {
         this.changeWorld(event.getPlayer());
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
-            player.setPlayerListName(Color.RED+"[Admin]" + player.getName());
+            player.setPlayerListName("[Admin]" + player.getName());
         }
     }
 
