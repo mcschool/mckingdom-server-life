@@ -65,6 +65,9 @@ public class FishingWorld implements Listener{
     @EventHandler
     public void onPlayerInteractEntityEvent(PlayerInteractEntityEvent event){
         Player player = event.getPlayer();
+        if (player == null) {
+            return;
+        }
         if (!player.getWorld().getName().equals(this.worldname)){
             return;
         }

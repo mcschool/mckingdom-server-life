@@ -39,10 +39,15 @@ public class LobbyWorld implements Listener {
     }
 
     @EventHandler
-    public void PlayerJoinEvent(PlayerJoinEvent event){
+    public void PlayerJoinEvent(PlayerJoinEvent event) {
         this.changeWorld(event.getPlayer());
+        Player player = event.getPlayer();
+        if (player.getWorld().getName().equals(this.worldName)) {
+            if ((player.getUniqueId().toString().equals("4966b6cb-90e3-4b63-a523-cc62dc1e91ce"))) {
+                player.setPlayerListName(Color.RED+"[Admin]" + player.getName());
+            }
+        }
     }
-    
 
     @EventHandler
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
@@ -189,6 +194,9 @@ public class LobbyWorld implements Listener {
      * アイテムショップを右クリックしたときにショップ開く
      */
     private void openItemShop(Player player) {
+        if (player == null) {
+            return;
+        }
         player.sendTitle("ようこそ アイテムショップ へ", "ゲットしたお金でアイテムを購入できます",0, 20, 0);
         // 1秒遅延させてショップ開く。なんとなく..
         new BukkitRunnable() {

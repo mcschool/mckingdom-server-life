@@ -26,6 +26,7 @@ public class JobService {
      * 職業選択画面
      */
     public void openJobSelect() {
+        Player player = this.player;
         player.sendTitle("職業選択", "好きな職業を選択してください",0, 20, 0);
         new BukkitRunnable() {
             @Override
