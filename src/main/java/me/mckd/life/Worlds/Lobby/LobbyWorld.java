@@ -39,10 +39,13 @@ public class LobbyWorld implements Listener {
     }
 
     @EventHandler
-    public void PlayerJoinEvent(PlayerJoinEvent event){
+    public void PlayerJoinEvent(PlayerJoinEvent event) {
         this.changeWorld(event.getPlayer());
+        Player player = event.getPlayer();
+        if (player.getWorld().getName().equals(this.worldName)) {
+            player.setPlayerListName("[Admin]" + player.getName());
+        }
     }
-    
 
     @EventHandler
     public void onPlayerChangeWorld(PlayerChangedWorldEvent event) {
@@ -53,7 +56,6 @@ public class LobbyWorld implements Listener {
             player.getWorld().setPVP(false);
             String name = player.getDisplayName();
             player.setCustomName(name + " ★0");
-            player.setPlayerListName("Admin");
         }
     }
 
