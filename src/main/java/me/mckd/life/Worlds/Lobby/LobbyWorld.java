@@ -53,6 +53,9 @@ public class LobbyWorld implements Listener {
             player.getWorld().setPVP(false);
             String name = player.getDisplayName();
             player.setCustomName(name + " ★0");
+            player.sendMessage(ChatColor.RED+"溶岩を使ったいたずらなどの荒らし行為はすぐにBAN対処します。");
+            player.sendMessage(ChatColor.RED+"一人ひとりの行動・発言はログで取得できます。");
+            player.sendMessage(ChatColor.BLUE+"みんなが気持ちよく遊べるように心がけてください");
         }
     }
 
