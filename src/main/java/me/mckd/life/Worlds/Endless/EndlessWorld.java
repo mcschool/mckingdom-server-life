@@ -218,6 +218,11 @@ public class EndlessWorld implements Listener {
                 Location location = new Location(player.getWorld(), 131, 68, 193);
                 player.teleport(location);
             }
+
+            if (player.getUniqueId().toString().equals("b8438a10-825c-46a1-862e-f0f12323ee89")) {
+                Location location = new Location(player.getWorld(), 87, 69, 325);
+                player.teleport(location);
+            }
         }
 
         return;
