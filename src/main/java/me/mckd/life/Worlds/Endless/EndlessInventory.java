@@ -16,7 +16,7 @@ import java.util.List;
 public class EndlessInventory {
 
 
-    public Inventory gameMenu(Player player) {
+    public Inventory gameMenu() {
         // オリジナルのインベントリを用意
         org.bukkit.inventory.Inventory inv = Bukkit.createInventory(null, 54, "ゲームメニュー");
 

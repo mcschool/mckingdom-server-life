@@ -20,6 +20,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.NameTagVisibility;
 
 import javax.naming.Name;
@@ -47,6 +49,12 @@ public class EndlessWorld implements Listener {
         player.sendMessage(ChatColor.RED+"溶岩を使ったいたずらなどの荒らし行為はすぐにBAN対処します。");
         player.sendMessage(ChatColor.RED+"一人ひとりの行動・発言はログで取得できます。");
         player.sendMessage(ChatColor.BLUE+"みんなが気持ちよく遊べるように心がけてください");
+
+        ItemStack itemStack = new ItemStack(Material.PAPER);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName("ゲームメニュー");
+        itemStack.setItemMeta(itemMeta);
+        player.getInventory().addItem(itemStack);
     }
 
     @EventHandler
@@ -194,7 +202,7 @@ public class EndlessWorld implements Listener {
 
                 if (event.getMaterial() == Material.PAPER) {
                     EndlessInventory lobbyInventory = new EndlessInventory();
-                    player.openInventory(lobbyInventory.gameMenu(player));
+                    player.openInventory(lobbyInventory.gameMenu());
                 }
             }
         }
