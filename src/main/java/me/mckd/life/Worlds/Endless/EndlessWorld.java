@@ -3,25 +3,27 @@ package me.mckd.life.Worlds.Endless;
 import me.mckd.life.Life;
 import me.mckd.life.Services.JobService;
 import me.mckd.life.Services.SidebarService;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scoreboard.NameTagVisibility;
 
 import javax.naming.Name;
+import java.io.IOException;
 import java.util.jar.Attributes;
 
 public class EndlessWorld implements Listener {
@@ -169,6 +171,46 @@ public class EndlessWorld implements Listener {
             JobService.doWork(this.plugin, player, "createCake");
         }
     }
+
+    @EventHandler
+    public void PlayerInteractEvent(PlayerInteractEvent event) throws IOException {
+        Player player = event.getPlayer();
+        if (player.getWorld().getName().equals(this.worldName)) {
+            Block block = event.getClickedBlock();
+            World world = event.getPlayer().getWorld();
+            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+
+            }
+            if (event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+                if (event.getMaterial() == Material.LEASH) {
+                    event.setCancelled(true);
+                }
+            }
+
+            if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+
+                if (event.getMaterial() == Material.PAPER) {
+                    EndlessInventory lobbyInventory = new EndlessInventory();
+                    player.openInventory(lobbyInventory.gameMenu(player));
+                }
+            }
+        }
+
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent e) throws IOException {
+        Player player = (Player) e.getWhoClicked();
+        if(!player.getWorld().getName().equals(this.worldName)) return;
+
+        if (e.getCurrentItem().getType() == Material.WOOD){
+            Location location = new Location(player.getWorld(), 131, 68, 193);
+            player.teleport(location);
+        }
+
+        return;
+    }
+
 
 
 }
