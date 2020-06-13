@@ -213,7 +213,7 @@ public class EndlessWorld implements Listener {
     public void onInventoryClick(InventoryClickEvent e) throws IOException {
         Player player = (Player) e.getWhoClicked();
         if (!player.getWorld().getName().equals(this.worldName)) return;
-        if (e.getCurrentItem().getType() == Material.WOOD) {
+        if (e.getCurrentItem().getType() == Material.LOG) {
             if (player.getUniqueId().toString().equals("4966b6cb-90e3-4b63-a523-cc62dc1e91ce")) {
                 Location location = new Location(player.getWorld(), 131, 68, 193);
                 player.teleport(location);

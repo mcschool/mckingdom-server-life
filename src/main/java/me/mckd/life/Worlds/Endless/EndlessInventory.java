@@ -15,14 +15,14 @@ public class EndlessInventory {
         // オリジナルのインベントリを用意
         org.bukkit.inventory.Inventory inv = Bukkit.createInventory(null, 54, "ゲームメニュー");
 
-        ItemStack life = new ItemStack(Material.WOOD);
+        ItemStack life = new ItemStack(Material.LOG);
         ItemMeta lifeMate = life.getItemMeta();
         lifeMate.setDisplayName("自分の家");
         List<String> lifeLores = new ArrayList<>();
         lifeLores.add("これをクリックで自分の家にテレポートできます!もし自分の家を設定してないなら運営に言ってください!");
         lifeMate.setLore(lifeLores);
         life.setItemMeta(lifeMate);
-        inv.setItem(5, life);
+        inv.setItem(1, life);
 
         return inv;
     }
