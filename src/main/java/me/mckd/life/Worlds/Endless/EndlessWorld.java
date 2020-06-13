@@ -4,7 +4,10 @@ import me.mckd.life.Life;
 import me.mckd.life.Services.JobService;
 import me.mckd.life.Services.SidebarService;
 import org.bukkit.*;
+<<<<<<< HEAD
 import org.bukkit.block.Block;
+=======
+>>>>>>> 50498abe9afae2373a83d1d0c47012e1a434a4b2
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -44,6 +47,9 @@ public class EndlessWorld implements Listener {
             return;
         }
         player.setGameMode(GameMode.SURVIVAL);
+        player.sendMessage(ChatColor.RED+"溶岩を使ったいたずらなどの荒らし行為はすぐにBAN対処します。");
+        player.sendMessage(ChatColor.RED+"一人ひとりの行動・発言はログで取得できます。");
+        player.sendMessage(ChatColor.BLUE+"みんなが気持ちよく遊べるように心がけてください");
     }
 
     @EventHandler
