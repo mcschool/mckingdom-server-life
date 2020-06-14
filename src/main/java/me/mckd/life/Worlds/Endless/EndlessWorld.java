@@ -4,7 +4,6 @@ import me.mckd.life.Life;
 import me.mckd.life.Services.JobService;
 import me.mckd.life.Services.SidebarService;
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -20,17 +19,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.scoreboard.NameTagVisibility;
-
-import javax.naming.Name;
 import java.io.IOException;
-import java.util.jar.Attributes;
 
-import static org.bukkit.Material.COOKED_BEEF;
-import static org.bukkit.Material.WOOD;
 
 public class EndlessWorld implements Listener {
 
@@ -54,11 +46,11 @@ public class EndlessWorld implements Listener {
         player.sendMessage(ChatColor.RED + "一人ひとりの行動・発言はログで取得できます。");
         player.sendMessage(ChatColor.BLUE + "みんなが気持ちよく遊べるように心がけてください");
 
-        e.getPlayer().getInventory().setHeldItemSlot(8);
         ItemStack itemStack = new ItemStack(Material.PAPER);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName("ゲームメニュー");
         itemStack.setItemMeta(itemMeta);
+        e.getPlayer().getInventory().setHeldItemSlot(8);
         player.getInventory().addItem(itemStack);
 
     }
@@ -194,16 +186,6 @@ public class EndlessWorld implements Listener {
     public void PlayerInteractEvent(PlayerInteractEvent event) throws IOException {
         Player player = event.getPlayer();
         if (player.getWorld().getName().equals(this.worldName)) {
-            Block block = event.getClickedBlock();
-            World world = event.getPlayer().getWorld();
-            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-
-            }
-            if (event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
-                if (event.getMaterial() == Material.LEASH) {
-                    event.setCancelled(true);
-                }
-            }
 
             if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
 
@@ -220,7 +202,7 @@ public class EndlessWorld implements Listener {
     public void onInventoryClick(InventoryClickEvent e) throws IOException {
         Player player = (Player) e.getWhoClicked();
         if (!player.getWorld().getName().equals(this.worldName)) return;
-        if (e.getCurrentItem().getType() == Material.LOG) {
+        if (e.getCurrentItem().getType() == Material.BARRIER) {
             if (player.getUniqueId().toString().equals("4966b6cb-90e3-4b63-a523-cc62dc1e91ce")) {
                 Location location = new Location(player.getWorld(), 131, 68, 193);
                 player.teleport(location);
@@ -230,7 +212,7 @@ public class EndlessWorld implements Listener {
                 Location location = new Location(player.getWorld(), 87, 69, 325);
                 player.teleport(location);
             }
-            //e.setCancelled(true);
+            e.setCancelled(true);
         }
 
         return;
