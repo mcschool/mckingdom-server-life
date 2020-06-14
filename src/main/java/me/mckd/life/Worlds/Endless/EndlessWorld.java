@@ -20,6 +20,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.NameTagVisibility;
@@ -27,6 +28,9 @@ import org.bukkit.scoreboard.NameTagVisibility;
 import javax.naming.Name;
 import java.io.IOException;
 import java.util.jar.Attributes;
+
+import static org.bukkit.Material.COOKED_BEEF;
+import static org.bukkit.Material.WOOD;
 
 public class EndlessWorld implements Listener {
 
@@ -46,16 +50,19 @@ public class EndlessWorld implements Listener {
             return;
         }
         player.setGameMode(GameMode.SURVIVAL);
-        player.sendMessage(ChatColor.RED+"溶岩を使ったいたずらなどの荒らし行為はすぐにBAN対処します。");
-        player.sendMessage(ChatColor.RED+"一人ひとりの行動・発言はログで取得できます。");
-        player.sendMessage(ChatColor.BLUE+"みんなが気持ちよく遊べるように心がけてください");
+        player.sendMessage(ChatColor.RED + "溶岩を使ったいたずらなどの荒らし行為はすぐにBAN対処します。");
+        player.sendMessage(ChatColor.RED + "一人ひとりの行動・発言はログで取得できます。");
+        player.sendMessage(ChatColor.BLUE + "みんなが気持ちよく遊べるように心がけてください");
 
+        e.getPlayer().getInventory().setHeldItemSlot(8);
         ItemStack itemStack = new ItemStack(Material.PAPER);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName("ゲームメニュー");
         itemStack.setItemMeta(itemMeta);
         player.getInventory().addItem(itemStack);
+
     }
+
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent e) {
