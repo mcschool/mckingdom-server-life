@@ -15,7 +15,7 @@ public class EndlessInventory {
         // オリジナルのインベントリを用意
         org.bukkit.inventory.Inventory inv = Bukkit.createInventory(null, 54, "ゲームメニュー");
 
-        ItemStack life = new ItemStack(Material.LOG);
+        ItemStack life = new ItemStack(Material.BARRIER);
         ItemMeta lifeMate = life.getItemMeta();
         lifeMate.setDisplayName("自分の家");
         List<String> lifeLores = new ArrayList<>();
