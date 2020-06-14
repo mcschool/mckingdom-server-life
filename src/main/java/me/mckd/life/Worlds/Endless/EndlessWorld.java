@@ -223,7 +223,7 @@ public class EndlessWorld implements Listener {
                 Location location = new Location(player.getWorld(), 87, 69, 325);
                 player.teleport(location);
             }
-            e.setCancelled(true);
+            //e.setCancelled(true);
         }
 
         return;
