@@ -105,7 +105,7 @@ public class LobbyWorld implements Listener {
      */
     private void changeWorld(Player player) {
         player.performCommand("mvtp lobby");
-        Location location = new Location(Bukkit.getWorld("lobby"), 399, 8, 289);
+        Location location = new Location(Bukkit.getWorld("lobby"), 389, 5.5, 305);
         player.teleport(location);
         player.setGameMode(GameMode.ADVENTURE);
 
