@@ -1,6 +1,7 @@
 package me.mckd.life.Worlds.Lobby;
 
 import me.mckd.life.Life;
+import me.mckd.life.Services.BankService;
 import me.mckd.life.Services.SidebarService;
 import me.mckd.life.Services.JobService;
 import org.bukkit.*;
@@ -176,6 +177,10 @@ public class LobbyWorld implements Listener {
             JobService jobService = new JobService(this.plugin, player);
             jobService.clickReceiveSalary();
         }
+        if (name.equals("銀行")) {
+            BankService bankService = new BankService(this.plugin, player);
+            bankService.open();
+        }
         if (name.equals("Fishing")){
             player.performCommand("mvtp fishing");
         }
@@ -342,6 +347,7 @@ public class LobbyWorld implements Listener {
             JobService jobService = new JobService(this.plugin, player);
             jobService.clickJobInventory(e);
         }
+
     }
 
     /**

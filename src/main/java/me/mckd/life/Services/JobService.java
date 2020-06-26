@@ -2,6 +2,7 @@ package me.mckd.life.Services;
 
 import me.mckd.life.Life;
 import me.mckd.life.Services.SidebarService;
+import net.citizensnpcs.api.CitizensAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -12,6 +13,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+/**
+ * 職業に関するプログラム
+ */
 public class JobService {
 
     private Life plugin;

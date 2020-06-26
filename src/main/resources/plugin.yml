@@ -1,3 +1,6 @@
 name: Life
 version: ${project.version}
 main: me.mckd.life.Life
+commands:
+  ping:
+    description: ping pong ..
