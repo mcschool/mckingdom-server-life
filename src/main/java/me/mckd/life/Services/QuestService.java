@@ -30,7 +30,7 @@ public class QuestService {
                 Inventory inv;
                 inv = Bukkit.createInventory(null, 18, "クエストショップ");
                 inv.clear();
-                inv.setItem(0, setItem(Material.WOOD_SWORD, "", 0));
+                inv.setItem(0, setItem(Material.WOOD_SWORD, "", 1));
 
                 player.openInventory(inv);
             }
