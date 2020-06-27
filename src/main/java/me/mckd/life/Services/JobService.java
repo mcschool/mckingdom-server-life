@@ -1,8 +1,6 @@
 package me.mckd.life.Services;
 
 import me.mckd.life.Life;
-import me.mckd.life.Services.SidebarService;
-import net.citizensnpcs.api.CitizensAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;

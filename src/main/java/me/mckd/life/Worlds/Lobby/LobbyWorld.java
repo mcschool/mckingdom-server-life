@@ -2,6 +2,7 @@ package me.mckd.life.Worlds.Lobby;
 
 import me.mckd.life.Life;
 import me.mckd.life.Services.BankService;
+import me.mckd.life.Services.QuestService;
 import me.mckd.life.Services.SidebarService;
 import me.mckd.life.Services.JobService;
 import org.bukkit.*;
@@ -181,6 +182,10 @@ public class LobbyWorld implements Listener {
             BankService bankService = new BankService(this.plugin, player);
             bankService.open();
         }
+        if (name.equals("クエストショップ")){
+            QuestService questService = new QuestService(this.plugin, player);
+            questService.open();
+        }
         if (name.equals("Fishing")){
             player.performCommand("mvtp fishing");
         }
@@ -343,12 +348,16 @@ public class LobbyWorld implements Listener {
             }
         }
 
+
         if (invName.equals("職業選択")) {
             JobService jobService = new JobService(this.plugin, player);
             jobService.clickJobInventory(e);
         }
 
     }
+
+
+
 
     /**
      * インベントリを閉じるときに呼ばれる
@@ -422,5 +431,7 @@ public class LobbyWorld implements Listener {
 
         return item.getAmount();
     }
+
+
 }
 
