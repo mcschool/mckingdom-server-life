@@ -25,6 +25,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -177,14 +178,16 @@ public class LobbyWorld implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent e) {
+    public void onPlayerInteract(PlayerInteractEvent e) throws IOException {
         Player player = e.getPlayer();
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
+        Bukkit.getLogger().info("........A:");
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Block block = e.getClickedBlock();
             Bukkit.getLogger().info(block.toString());
+            Bukkit.getLogger().info("........B:");
             if (block.getType() == Material.ENDER_PORTAL) {
                 this.normalGachaService = new NormalGachaService(this.plugin, player);
                 this.normalGachaService.run();
