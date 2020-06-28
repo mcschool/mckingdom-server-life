@@ -16,6 +16,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.event.world.WorldInitEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -186,6 +187,9 @@ public class LobbyWorld implements Listener {
     public void onPlayerInteract(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        if (e.getHand() == EquipmentSlot.HAND) {
             return;
         }
         Bukkit.getLogger().info("........A:" + e.getEventName());
