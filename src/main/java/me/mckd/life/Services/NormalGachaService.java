@@ -28,7 +28,7 @@ public class NormalGachaService {
         this.player = player;
     }
 
-    public void run() {
+    public void run(Location location) {
         PlayerDataService playerDataService = new PlayerDataService(plugin, player);
         int normalGachaTicket = playerDataService.getNormalGachaTicket();
         if (normalGachaTicket > 0) {
@@ -52,7 +52,7 @@ public class NormalGachaService {
                     c++;
                     if (c > 20) {
                         this.cancel();
-                        spawn();
+                        spawn(location);
                     }
                 }
             }.runTaskTimer(plugin, 0, 2);
@@ -95,9 +95,20 @@ public class NormalGachaService {
         e.setCancelled(true);
     }
 
-    public void spawn() {
-//        World world = player.getWorld();
-//        ItemStack item = this.items.get(this.currentItemIndex);
-//        world.dropItemNaturally(player.getLocation(), item);
+    public void spawn(Location loc) {
+        World world = player.getWorld();
+        new BukkitRunnable() {
+            float c = 0;
+            @Override
+            public void run () {
+                loc.add(0, 0.2, 0);
+                world.spawnParticle(Particle.BLOCK_CRACK, loc, 20, 1, 1, 1, 0);
+                if (c > 2) {
+                    this.cancel();
+                    world.dropItemNaturally(loc, new ItemStack(Material.APPLE,1));
+                }
+                c += 0.1;
+            }
+        }.runTaskTimer(plugin, 0, 2);
     }
 }

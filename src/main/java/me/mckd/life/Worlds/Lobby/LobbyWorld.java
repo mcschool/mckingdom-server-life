@@ -194,8 +194,9 @@ public class LobbyWorld implements Listener {
             Bukkit.getLogger().info(block.toString());
             Bukkit.getLogger().info("........B:");
             if (block.getType() == Material.ENDER_PORTAL_FRAME) {
+                Location location = e.getClickedBlock().getLocation();
                 this.normalGachaService = new NormalGachaService(this.plugin, player);
-                this.normalGachaService.run();
+                this.normalGachaService.run(location);
             }
         }
     }
@@ -239,10 +240,6 @@ public class LobbyWorld implements Listener {
         }
         if (name.equals("Fishing")){
             player.performCommand("mvtp fishing");
-        }
-        if (name.equals("ノーマルガチャ")){
-            this.normalGachaService = new NormalGachaService(this.plugin, player);
-            this.normalGachaService.run();
         }
     }
 
