@@ -75,6 +75,8 @@ public class LobbyWorld implements Listener {
         String lastLoginDay = playerDataService.getLastLoginDay();
 
         // 最終のログインが今日じゃない場合ガチャチケ渡す
+        Bukkit.getLogger().info("dayFormat:" + dayFormat);
+        Bukkit.getLogger().info("lastLoginDay:" + lastLoginDay);
         if (!lastLoginDay.equals(dayFormat)) {
             int normalGachaTicket = playerDataService.getNormalGachaTicket();
             playerDataService.setNormalGachaTicket(normalGachaTicket + 1);
