@@ -17,7 +17,6 @@ public class NormalGachaService {
 
     Life plugin;
     Player player;
-    Location location;
     Inventory inv;
     ArrayList<ItemStack> items = new ArrayList<>();
 
@@ -29,6 +28,7 @@ public class NormalGachaService {
     }
 
     public void run(Location location) {
+        Bukkit.getLogger().info("run:!!");
         PlayerDataService playerDataService = new PlayerDataService(plugin, player);
         int normalGachaTicket = playerDataService.getNormalGachaTicket();
         if (normalGachaTicket > 0) {
