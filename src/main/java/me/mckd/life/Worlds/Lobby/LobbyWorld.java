@@ -3,10 +3,12 @@ package me.mckd.life.Worlds.Lobby;
 import me.mckd.life.Life;
 import me.mckd.life.Services.*;
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -14,6 +16,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -170,6 +173,20 @@ public class LobbyWorld implements Listener {
         }
     }
 
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent e) {
+        Player player = e.getPlayer();
+        if (!player.getWorld().getName().equals(this.worldName)) {
+            return;
+        }
+        if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            Block block = e.getClickedBlock();
+            if (block.getType() == Material.ENDER_PORTAL) {
+                this.normalGachaService = new NormalGachaService(this.plugin, player);
+                this.normalGachaService.run();
+            }
+        }
+    }
     @EventHandler
     public void onPlayerInteractEntity(PlayerInteractAtEntityEvent e) {
         Player player = e.getPlayer();
