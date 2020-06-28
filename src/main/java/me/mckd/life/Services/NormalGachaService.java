@@ -50,12 +50,12 @@ public class NormalGachaService {
                     // location.getWorld().playSound(location, Sound.BLOCK_NOTE_BELL, 1, 1);
 
                     c++;
-                    if (c > 10) {
+                    if (c > 20) {
                         this.cancel();
                         spawn();
                     }
                 }
-            }.runTaskTimer(plugin, 0, 20);
+            }.runTaskTimer(plugin, 0, 2);
         } else {
             player.sendMessage("");
             player.sendMessage(ChatColor.RED + "ノーマルガチャチケットがないのでガチャはできません");
@@ -96,8 +96,8 @@ public class NormalGachaService {
     }
 
     public void spawn() {
-        World world = player.getWorld();
-        ItemStack item = this.items.get(this.currentItemIndex);
-        world.dropItemNaturally(player.getLocation(), item);
+//        World world = player.getWorld();
+//        ItemStack item = this.items.get(this.currentItemIndex);
+//        world.dropItemNaturally(player.getLocation(), item);
     }
 }
