@@ -50,9 +50,7 @@ public class NormalGachaService {
                 }
             }.runTaskTimer(plugin, 0, 2);
         } else {
-            player.sendMessage("");
             player.sendMessage(ChatColor.RED + "ノーマルガチャチケットがないのでガチャはできません");
-            player.sendMessage("");
         }
     }
 

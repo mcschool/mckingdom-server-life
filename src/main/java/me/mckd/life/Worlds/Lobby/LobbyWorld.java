@@ -1,5 +1,7 @@
 package me.mckd.life.Worlds.Lobby;
 
+import com.gmail.filoghost.holographicdisplays.api.Hologram;
+import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import me.mckd.life.Life;
 import me.mckd.life.Services.*;
 import org.bukkit.*;
@@ -44,6 +46,9 @@ public class LobbyWorld implements Listener {
     @EventHandler
     public void onWorldInit(WorldInitEvent e) {
         if (!e.getWorld().getName().equals(this.worldName)) {
+            Location location = new Location(e.getWorld(), 391, 7, 320);
+            Hologram hologram = HologramsAPI.createHologram(this.plugin, location);
+            hologram.appendTextLine("ノーマルガチャ");
             return;
         }
     }
