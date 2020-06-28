@@ -189,7 +189,7 @@ public class LobbyWorld implements Listener {
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
-        if (e.getHand() == EquipmentSlot.HAND) {
+        if (e.getHand() != EquipmentSlot.HAND) {
             return;
         }
         Bukkit.getLogger().info("........A:" + e.getEventName());
