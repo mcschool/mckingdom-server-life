@@ -19,6 +19,7 @@ public class SidebarService {
     public void show() {
 
         FileConfiguration c = this.plugin.getConfig();
+        PlayerDataService playerDataService = new PlayerDataService(plugin, player);
 
         // お金
         String moneyKey = player.getUniqueId() + "-money";
@@ -34,6 +35,9 @@ public class SidebarService {
         if (currentJob.equals("")) {
             currentJob = "ホームレス";
         }
+
+        // ガチャチケット
+        int normalGachaTicket = playerDataService.getNormalGachaTicket();
 
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getNewScoreboard();
@@ -51,9 +55,9 @@ public class SidebarService {
         s8.setScore(8);
         Score s7 = obj.getScore("称号:  みじんこ");
         s7.setScore(7);
-        Score s6 = obj.getScore("ガチャチケ:  0");
+        Score s6 = obj.getScore("ガチャチケ:  " + String.valueOf(normalGachaTicket) + "枚");
         s6.setScore(6);
-        Score s5 = obj.getScore("レアガチャチケ:  0");
+        Score s5 = obj.getScore("");
         s5.setScore(5);
         Score s4 = obj.getScore("                ");
         s4.setScore(4);

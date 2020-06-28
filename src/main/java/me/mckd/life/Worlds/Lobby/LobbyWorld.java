@@ -75,6 +75,7 @@ public class LobbyWorld implements Listener {
         if (!lastLoginDay.equals(dayFormat)) {
             int normalGachaTicket = playerDataService.getNormalGachaTicket();
             playerDataService.setNormalGachaTicket(normalGachaTicket + 1);
+            player.sendMessage("ガチャチケット1枚ゲット");
         }
     }
 
