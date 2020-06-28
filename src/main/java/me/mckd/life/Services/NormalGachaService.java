@@ -34,11 +34,20 @@ public class NormalGachaService {
         if (normalGachaTicket > 0) {
             this.createInv();
             this.setItems();
+
             new BukkitRunnable() {
                 int c = 0;
                 @Override
                 public void run() {
-                    animate();
+
+                    Random rand = new Random();
+                    int n = rand.nextInt(items.size());
+                    ItemStack i = items.get(n);
+                    currentItemIndex = n;
+                    inv.setItem(2, i);
+                    player.updateInventory();
+                    location.getWorld().playSound(location, Sound.BLOCK_NOTE_BELL, 1, 1);
+
                     c++;
                     if (c > 10) {
                         this.cancel();
