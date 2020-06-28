@@ -183,7 +183,7 @@ public class LobbyWorld implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent e) throws IOException {
+    public void onPlayerInteract(PlayerInteractEvent e) {
         Player player = e.getPlayer();
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
