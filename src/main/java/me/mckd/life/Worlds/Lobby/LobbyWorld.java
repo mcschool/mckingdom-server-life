@@ -184,6 +184,7 @@ public class LobbyWorld implements Listener {
         }
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Block block = e.getClickedBlock();
+            Bukkit.getLogger().info(block.toString());
             if (block.getType() == Material.ENDER_PORTAL) {
                 this.normalGachaService = new NormalGachaService(this.plugin, player);
                 this.normalGachaService.run();
