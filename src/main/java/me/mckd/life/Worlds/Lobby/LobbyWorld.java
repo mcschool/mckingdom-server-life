@@ -188,11 +188,11 @@ public class LobbyWorld implements Listener {
         if (!player.getWorld().getName().equals(this.worldName)) {
             return;
         }
-        Bukkit.getLogger().info("........A:");
+        Bukkit.getLogger().info("........A:" + e.getEventName());
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Block block = e.getClickedBlock();
             Bukkit.getLogger().info(block.toString());
-            Bukkit.getLogger().info("........B:");
+            Bukkit.getLogger().info("........B:" + e.getEventName());
             if (block.getType() == Material.ENDER_PORTAL_FRAME) {
                 Location location = e.getClickedBlock().getLocation();
                 this.normalGachaService = new NormalGachaService(this.plugin, player);
