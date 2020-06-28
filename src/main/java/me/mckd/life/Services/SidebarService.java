@@ -51,8 +51,12 @@ public class SidebarService {
         s8.setScore(8);
         Score s7 = obj.getScore("称号:  みじんこ");
         s7.setScore(7);
-        Score s6 = obj.getScore("                ");
+        Score s6 = obj.getScore("ガチャチケ:  0");
         s6.setScore(6);
+        Score s5 = obj.getScore("レアガチャチケ:  0");
+        s5.setScore(5);
+        Score s4 = obj.getScore("                ");
+        s4.setScore(4);
 
         //        Objective obj = board.registerNewObjective("a", "b");
 //        obj.setDisplaySlot(DisplaySlot.SIDEBAR);

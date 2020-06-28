@@ -1,10 +1,7 @@
 package me.mckd.life.Worlds.Lobby;
 
 import me.mckd.life.Life;
-import me.mckd.life.Services.BankService;
-import me.mckd.life.Services.QuestService;
-import me.mckd.life.Services.SidebarService;
-import me.mckd.life.Services.JobService;
+import me.mckd.life.Services.*;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -25,6 +22,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +30,7 @@ public class LobbyWorld implements Listener {
 
     private Life plugin;
     private String worldName = "lobby";
-
+    private NormalGachaService normalGachaService;
 
     public LobbyWorld(Life plugin) {
         // コンストラクタ
@@ -54,6 +52,29 @@ public class LobbyWorld implements Listener {
             player.sendMessage(ChatColor.RED+"溶岩を使ったいたずらなどの荒らし行為はすぐにBAN対処します。");
             player.sendMessage(ChatColor.RED+"一人ひとりの行動・発言はログで取得できます。");
             player.sendMessage(ChatColor.BLUE+"みんなが気持ちよく遊べるように心がけてください");
+
+            this.loginCheck(player);
+
+            // サイドバー更新
+            SidebarService sidebarService = new SidebarService(this.plugin, player);
+            sidebarService.show();
+        }
+    }
+
+    // ログインチェック
+    // ガチャチケとかあげる
+    public void loginCheck(Player player) {
+        LocalDateTime now = LocalDateTime.now();
+        int month = now.getMonth().getValue();
+        int day = now.getDayOfMonth();
+        String dayFormat = String.valueOf(month) + "/" + String.valueOf(day);
+        PlayerDataService playerDataService = new PlayerDataService(this.plugin, player);
+        String lastLoginDay = playerDataService.getLastLoginDay();
+
+        // 最終のログインが今日じゃない場合ガチャチケ渡す
+        if (!lastLoginDay.equals(dayFormat)) {
+            int normalGachaTicket = playerDataService.getNormalGachaTicket();
+            playerDataService.setNormalGachaTicket(normalGachaTicket + 1);
         }
     }
 
@@ -189,6 +210,10 @@ public class LobbyWorld implements Listener {
         if (name.equals("Fishing")){
             player.performCommand("mvtp fishing");
         }
+        if (name.equals("ノーマルガチャ")){
+            this.normalGachaService = new NormalGachaService(this.plugin, player);
+            this.normalGachaService.run();
+        }
     }
 
     /**
@@ -312,6 +337,10 @@ public class LobbyWorld implements Listener {
 
         Inventory inv = e.getInventory();
         String invName = inv.getName();
+        if (invName.equals("ノーマルガチャ")) {
+            // NormalGachaInventoryService.run(e);
+            this.normalGachaService.click(e);
+        }
         if (invName.equals("アイテムショップ")) {
             String key = player.getUniqueId() + "-money";
             FileConfiguration c = this.plugin.getConfig();
