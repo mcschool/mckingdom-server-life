@@ -105,8 +105,12 @@ public class NormalGachaService {
         }.runTaskTimer(plugin, 0, 2);
 
         // チケット減らす
-//        PlayerDataService playerDataService = new PlayerDataService(plugin, player);
-//        int normalGachaTicket = playerDataService.getNormalGachaTicket();
-//        playerDataService.setNormalGachaTicket(normalGachaTicket - 1);
+        PlayerDataService playerDataService = new PlayerDataService(plugin, player);
+        int normalGachaTicket = playerDataService.getNormalGachaTicket();
+        playerDataService.setNormalGachaTicket(normalGachaTicket - 1);
+
+        // サイドバー更新
+        SidebarService sidebarService = new SidebarService(this.plugin, player);
+        sidebarService.show();
     }
 }
