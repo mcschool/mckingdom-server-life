@@ -46,7 +46,7 @@ public class NormalGachaService {
                     currentItemIndex = n;
                     inv.setItem(2, i);
                     player.updateInventory();
-                    location.getWorld().playSound(location, Sound.BLOCK_NOTE_BELL, 1, 1);
+                    // location.getWorld().playSound(location, Sound.BLOCK_NOTE_BELL, 1, 1);
 
                     c++;
                     if (c > 10) {
