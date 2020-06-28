@@ -34,6 +34,7 @@ public class NormalGachaService {
         if (normalGachaTicket > 0) {
             this.createInv();
             this.setItems();
+            player.openInventory(inv);
 
             new BukkitRunnable() {
                 int c = 0;
