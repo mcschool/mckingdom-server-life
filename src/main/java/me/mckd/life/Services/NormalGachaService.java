@@ -40,18 +40,11 @@ public class NormalGachaService {
                 int c = 0;
                 @Override
                 public void run() {
-
-                    Random rand = new Random();
-                    int n = rand.nextInt(items.size());
-                    ItemStack i = items.get(n);
-                    currentItemIndex = n;
-                    inv.setItem(2, i);
-                    player.updateInventory();
-                    // location.getWorld().playSound(location, Sound.BLOCK_NOTE_BELL, 1, 1);
-
+                    animate();
                     c++;
                     if (c > 20) {
                         this.cancel();
+                        player.closeInventory();
                         spawn(location);
                     }
                 }
@@ -70,7 +63,7 @@ public class NormalGachaService {
         currentItemIndex = n;
         inv.setItem(2, i);
         player.updateInventory();
-        location.getWorld().playSound(location, Sound.BLOCK_NOTE_BELL, 1, 1);
+        player.getLocation().getWorld().playSound(player.getLocation(), Sound.BLOCK_NOTE_BELL, 1, 1);
     }
 
     public void createInv() {
@@ -105,10 +98,15 @@ public class NormalGachaService {
                 world.spawnParticle(Particle.BLOCK_CRACK, loc, 20, 1, 1, 1, 0);
                 if (c > 2) {
                     this.cancel();
-                    world.dropItemNaturally(loc, new ItemStack(Material.APPLE,1));
+                    world.dropItemNaturally(loc, items.get(currentItemIndex));
                 }
                 c += 0.1;
             }
         }.runTaskTimer(plugin, 0, 2);
+
+        // チケット減らす
+//        PlayerDataService playerDataService = new PlayerDataService(plugin, player);
+//        int normalGachaTicket = playerDataService.getNormalGachaTicket();
+//        playerDataService.setNormalGachaTicket(normalGachaTicket - 1);
     }
 }
