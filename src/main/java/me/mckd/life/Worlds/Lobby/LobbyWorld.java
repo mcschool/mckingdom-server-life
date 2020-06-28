@@ -197,11 +197,8 @@ public class LobbyWorld implements Listener {
         if (e.getHand() != EquipmentSlot.HAND) {
             return;
         }
-        Bukkit.getLogger().info("........A:" + e.getEventName());
         if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             Block block = e.getClickedBlock();
-            Bukkit.getLogger().info(block.toString());
-            Bukkit.getLogger().info("........B:" + e.getEventName());
             if (block.getType() == Material.ENDER_PORTAL_FRAME) {
                 Location location = e.getClickedBlock().getLocation();
                 this.normalGachaService = new NormalGachaService(this.plugin, player);
@@ -374,7 +371,6 @@ public class LobbyWorld implements Listener {
         Inventory inv = e.getInventory();
         String invName = inv.getName();
         if (invName.equals("ノーマルガチャ")) {
-            // NormalGachaInventoryService.run(e);
             this.normalGachaService.click(e);
         }
         if (invName.equals("アイテムショップ")) {
